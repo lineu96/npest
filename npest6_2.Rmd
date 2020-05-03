@@ -1,0 +1,350 @@
+---
+output:
+  html_document:                    # Classe de documento.
+    toc: true                       # Exibir sum?rio.
+    toc_depth: 2                    # Profundidade do sum?rio.
+    toc_float:                      # Sum?rio flutuante na borda.
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           # Se??es numeradas.
+    theme: flatly
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                 # Caminho para arquivo CSS.
+    fig_width: 7                    # Lagura das figuras.
+    fig_height: 6                   # Altura das figuras.
+    fig_caption: true               # Exibica??o de legenda.
+    fig_align: 'center'
+#    code_folding: hide              # Esconder/exibir bloco de c?digo.
+#    keep_md: true                   # Manter o arquivo md.
+    #template: quarterly_report.html # Caminho para o template.  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+---
+
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+
+---
+
+<font size="8"> 
+<p align=”center”> <b> Noções de Probabilidade e Estatística </b> </center>
+</font> 
+
+<font size="5"> 
+<p align=”center”> <b> Parte 6.2 - Inferência </b> </center>
+</font>
+
+<font size="5"> 
+<p align=”center”> <b> Estimação por intervalo e testes de hipótese </b> </center>
+</font>
+
+<font size="4"> 
+<p align=”center”> [Lineu Alberto Cavazani de Freitas](https://lineu96.github.io/st/) </center>
+</font> 
+
+---
+
+# **Estimação por intervalo** {.tabset .tabset-fade}
+
+Quando estimamos um parâmetro podemos ter estimativas pontuais, isto é, um único valor numérico para o parâmetro de interesse ou estimativas intervalares, isto é, um intervalo de possíveis valores para o parâmetro de interesse. 
+
+Por serem variáveis aleatórias, as estatísticas têm distribuição de probabilidade, são as chamadas distribuições amostrais, e os intervalos de confiança são obtidos a partir destas distribuições. 
+
+O intervalo de confiança é uma estimativa mais informativa pois, aliada à estimativa pontual, nos fornece informação quanto a precisão do valor observado.
+
+Interpretação: 
+
+1. "**Temos $\gamma$ % de confiança de que o intervalo entre (limite inferior) e (limite superior) realmente contém o parâmetro**".  
+
+2. "**Se obtivermos várias amostras de mesmo tamanho e, para cada uma delas, calcularmos os correspondentes intervalos de confiança com coeficiente de confiança $\gamma$, esperamos que a proporção de intervalos que contenham o valor do parâmetro seja igual a $\gamma$.**" 
+
+Lembre-se: **o parâmetro é fixo**, contudo **diferentes amostras levam a diferentes intervalos**. Por isso esperamos que o **intervalo contenha o parâmetro** e não que o parâmetro esteja contido no intervalo.
+
+---
+
+## Intervalos de confiança para $\mu$, com $\sigma$ conhecido
+
+O TCL permite a obtenção de intervalos de confiança para $\mu$, mesmo quando a distribuição das variáveis aleatórias que constituem a amostra não seguem distribuição Normal. Neste caso, o intervalo terá coeficiente de confiança aproximadamente $\gamma$, e esta aproximação melhora conforme se aumenta o tamanho amostral.
+
+Se:
+
+ - Temos uma amostra aleatória simples.
+ - $\sigma$ é conhecido.
+ - A população segue distribuição normal ou n > 30.
+ 
+Então:
+
+ - Determine o nível de confiança $\gamma$.
+ - Encontre o valor crítico $z_{\gamma/2}$.
+ - Calcule a margem de erro $e = z_{\gamma/2} . \frac{\sigma}{\sqrt{n}}$. 
+ 
+O intervalo de confiança para $\mu$, com coeficiente de confiança $\gamma$ é dado por:
+
+$$IC = \bar{x} \pm z_{\gamma/2}\left ( \frac{\sigma}{\sqrt{n}} \right )$$
+
+---
+
+## Intervalos de confiança para $\mu$, com $\sigma$ desconhecido
+
+Na maioria das situações práticas, não sabemos o verdadeiro valor do desvio
+padrão populacional $\sigma$ e por isso, ao invés de utilizar a distribuição Normal, usa-se a **t de Student**. Esta distribuição possui caudas mais pesadas que a Normal, fazendo com que a incerteza a respeito da variabilidade seja incorporada no intervalo de confiança.
+
+Se:
+
+ - Temos uma amostra aleatória simples.
+ - $\sigma$ é DESconhecido, mas temos uma estimativa $s$.
+ - A população segue distribuição normal ou n > 30.
+ 
+Então:
+
+ - Determine o nível de confiança $\gamma$.
+ - Encontre o valor crítico $t_{\gamma/2}$.
+ - Calcule a margem de erro $e = t_{\gamma/2} . \frac{s}{\sqrt{n}}$. 
+ 
+O intervalo de confiança para $\mu$, com coeficiente de confiança $\gamma$ é dado por:
+
+$$IC = \bar{x} \pm t_{\gamma/2}\left ( \frac{s}{\sqrt{n}} \right )$$
+
+---
+
+## Intervalo de confiança para a proporção $p$
+
+O procedimento para obtenção de um intervalo de confiança para a proporção é:
+
+Se:
+
+ - Temos uma amostra aleatória simples.
+ - As condições para a distribuição binomial são satisfeitas: 
+      * As tentativas são independentes.
+      * Há duas categorias de resultado (“sucesso”, “fracasso”).
+      * A probabilidade de sucesso $p$ permanece constante.
+ - A distribuição Normal pode ser usada como aproximação para a distribuição binomial, ou seja, $np ≥ 5$ e $np(1 − p) ≥ 5$.
+ 
+Então:
+
+ - Determine o nível de confiança $\gamma$.
+ - Encontre o valor crítico $z_{\gamma/2}$.
+ - Calcule a margem de erro $e = z_{\gamma/2} . \sqrt{\frac{p(1-p)}{n}}$. 
+ 
+O intervalo de confiança para $p$, com coeficiente de confiança $\gamma$ é dado por:
+
+$$IC = \hat{p} \pm z_{\gamma/2} \sqrt{\frac{p(1-p)}{n}}$$
+
+Contudo, note que dentro da raiz na expressão do intervalo de confiança, há a quantidade $p$, que é desconhecida. Duas abordagens são válidas:
+
+ - Substituir $p$ por $\hat{p}$. 
+ - Substituir $p$ por $1/4$, considerando que a expressão $p(1-p)$ tem valor máximo igual a $1/4$ quando $0\leq p \leq 1$.
+
+A primeira alternativa é considerada **otimista**, pois considera que a estimativa $\hat{p}$ é suficientemente próxima da verdadeira proporção $p$. Enquanto que a segunda alternativa é considerada **conservadora**, pois considera o pior cenário possível, fazendo com que o intervalo de confiança fique maior.
+
+---
+
+# **Teste de hipóteses** 
+
+Os principais objetivos da Inferência Estatística são estimar parâmetros populacionais (por meio de estimativas pontuais e intervalares) e testar hipóteses sobre estes parâmetros.
+
+Uma **hipótese** é uma afirmativa sobre uma propriedade da população e um  **teste de hipótese** é o procedimento pelo qual se verifica esta propriedade.
+
+Em geral, enunciamos uma hipótese **nula** e uma **alternativa** de forma que:
+
+ - $H_{0}$: Hipótese de **igualdade**. Afirma-se que o valor do parâmetro é igual a algum valor especificado.
+ - $H_{1}$: Hipótese de **diferença**. Afirma-se que o valor do parâmetro é apenas maior, ou apenas menor, ou ainda apenas diferente daquele que foi enunciado na hipótese nula.
+
+As hipóteses, considerando $\theta$ um parâmetro de interesse, podem ser:
+
+<center>
+<table>
+<tr><td>
+$$
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta \neq \theta_0
+\end{matrix}\right.\\
+$$
+</td><td>           
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td><td>
+$$
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta < \theta_0
+\end{matrix}\right.\\
+$$
+</td><td>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td><td>
+$$
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta > \theta_0
+\end{matrix}\right.\\
+$$
+</td></tr>
+</table>
+</center> 
+ 
+Na prática podemos **rejeitar** ou **não rejeitar** a hipótese nula $H_{0}$. Não se usa o termo **aceitar** a hipótese nula pois não se pode aceitar uma hipótese baseada apenas em evidências amostrais.
+
+Podemos cometer erros ao testar hipóteses, são eles:
+
+ - Erro do tipo I ($\alpha$): **Rejeitar** $H_{0}$ quando $H_{0}$ é **verdadeira**.
+ - Erro do tipo II ($\beta$): **Não rejeitar** $H_{0}$ quando $H_{0}$ é **falsa**.
+
+O ideal é que $\alpha$ e $\beta$ sejam próximos de 0, na prática a medida que diminui-se o $\alpha$, $\beta$ aumenta. Nossa preocupação é sempre evitar o erro do tipo I. Por isso $\alpha$ recebe o nome de **nível de significância**.
+
+As etapas para realização de um teste de hipóteses são:
+
+ - Enunciar as hipóteses nula e alternativa.
+ - Definir a forma da região crítica, com base na hipótese alternativa.
+ - Identificar a distribuição do estimador e obter sua estimativa.
+ - Fixar $\alpha$ e obter a região crítica.
+ - Interpretar o resultado.
+
+---
+
+## Teste para a média populacional
+
+Considerando dados em que o modelo Normal é adequado, quando estamos interessados em testar hipóteses acerca da média populacional utilizamos a média amostral $\bar{X}$, pois é um estimador não viciado e consistente de $\mu$.
+
+Considere um exemplo genérico, em que estamos interessados em verificar se a média é igual ou menor que 18. Para isso, considere que a variável de interesse segue distribuição Normal com desvio padrão conhecido igual a 6 e o tamanho amostral é igual a 30. Logo as hipóteses de interesse são:
+
+$$
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu < 18
+\end{matrix}\right.\\
+$$
+
+
+Com $\alpha$ conhecido, o valor crítico $x_c$ é dado por
+
+$$
+P(\bar{X}<x_c|\mu=18) = P(\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} < \frac{x_c-18}{6/\sqrt{30}}) = P(Z < z_c)
+$$
+
+$$
+z_c= \frac{x_c-18}{6/\sqrt{30}} \Rightarrow  x_c = 18+z_c \frac{6}{\sqrt{30}}
+$$
+
+Considerando $\alpha = 0,05$, $z_c=-1,64$ e $x_c = 16,20$. Como se trata de um teste unilateral à esquerda, a chamada Região Crítica (conjunto de números reais para os quais rejeita-se a hipótese nula) é dada por:
+
+$$RC=\left \{ x \in \mathbb{R}: x < 16,20 \right \}$$
+
+Se o valor observado pertencer à chamada região crítica, rejeita-se a hipótese nula. Então, caso a amostra forneça média amostral menor que 16,20, este valor pertencerá à região crítica e conclui-se que rejeitamos $H_0$ ao nível de significância de 5% ($\alpha = 0,05$). Caso contrário, conclui-se que não houve evidência suficiente para a não rejeição da hipótese nula.
+
+---
+
+Caso a hipótese de interesse fosse:
+
+$$
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu > 18
+\end{matrix}\right.\\
+$$
+
+Alteraria-se o $z_c$ para 1,64, pois é o valor da distribuição Normal Padrão cuja área restante à direita é igual ao 0,05 especificado como $\alpha$. As interpretações seguem a mesma lógica.
+
+---
+
+Caso a hipótese de interesse fosse:
+
+$$
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu \neq 18
+\end{matrix}\right.\\
+$$
+
+existiriam dois valores $x_c$: um à esquerda e outro à direita. Para obtenção destes valores basta utilizar o valor $\alpha/2$ e encontrar os correspondentes valores $x_c$ tanto para o caso da hipótese alternativa ser $\mu<18$ quanto para $\mu>18$, caso o valor obtido esteja dentro de qualquer uma das duas regiões, rejeita-se a hipótese nula.
+
+---
+
+A ausência de normalidade pode ser contornada com o auxílio do Teorema Central do Limite que nos garante que, para amostras grandes, a média amostral tem distribuição Normal.
+
+---
+
+Lembrando o que foi apresentado anteriormente, a proporção (número de sucessos/número de tentativas) pode ser interpretada como a média de uma variável aleatória convenientemente definida. Desta forma, o procedimento para testar hipóteses a respeito da proporção é extremamente similar ao que foi apresentado. Para esta situação, admitimos que:
+
+$$\hat{p} \sim N(p,p(1-p)/n)$$
+
+---
+
+## Teste para a média com variância desconhecida
+
+Na prática, existem diversas situações em que a variância populacional é desconhecida. Lembre-se que o TCL nos garante que a média amostral segue sempre distribuição Normal quando o tamanho amostral aumenta. 
+
+Contudo a ausência de informação quanto à variabilidade da população gera a necessidade de estimarmos esta quantidade. Em geral utiliza-se a já apresentada estatística $S^2$. 
+
+E a variável padronizada é dada por:
+
+$$
+T = \frac{\bar{X}-\mu}{S/\sqrt{n}}
+$$
+
+A variável $T$ segue distribuição $t$ de Student, denotada por $t_{(n-1)}$ em que $(n-1)$ são os chamados graus de liberdade da distribuição. 
+
+Tal como a distribuição Normal, trata-se de uma distribuição com densidade de probabilidade consideravelmente complexa e usa-se tabelas para obtenção de probabilidades de interesse ao invés de calcular via integração. 
+
+A $t$ é simétrica, tal como a distribuição Normal. E a medida que o tamanho amostral aumenta, as densidades convergem. Para tamanhos amostrais reduzidos a diferença entre as distribuições está principalmente nas caudas, a variabilidade da distribuição $t$ é maior que a da Normal, fazendo com que as caudas sejam mais "pesadas" e a incerteza quanto à ausência do real valor da variância seja incorporado pelo modelo adotado.
+
+Note que como utiliza-se a variância amostral, diferentes amostras vão resultar em diferentes resultados e, em alguns casos, as conclusões podem mudar de amostra para amostra.
+
+Considere um exemplo genérico em que estamos interessados em testar:
+
+$$
+\left\{\begin{matrix}
+H_0: \mu = 12
+\\ 
+H_1: \mu \neq 12
+\end{matrix}\right.\\
+$$
+
+em um problema em que a amostra fornecida para a variável de interesse foi: 14,4; 12,9; 15,0; 13,7; e 13,5. Não temos informação quanto à variância populacional e desejamos testar a hipótese considerando 1% de significância.
+
+A região crítica é da forma: $RC = \left \{ t \in \mathbb{R}| t<t_1 \ ou \ t<t_2  \right \}.$ Para obtenção das regiões críticas temos:
+
+$$
+T=\frac{\bar{X}-12}{S/\sqrt{5}}\sim t_{(4)}.
+$$
+
+E, da tabela da distribuição $t$ temos:
+
+$$
+P(t<t_1)=0,01/2 \Rightarrow t_1=-4,604
+\\
+P(t>t_2)=0,01/2 \Rightarrow t_2=4,604
+$$
+
+A média amostral é igual a 13,9, enquanto que a variância foi igual a 0,67. Logo, o $t$ calculado é dado por:
+
+$$
+t_c=\frac{\bar{X}-12}{S/\sqrt{5}}=\frac{13,9-12}{0,82/\sqrt{5}}=5,18
+$$
+
+Como o valor calculado pertence à região crítica, rejeitamos a hipótese nula.
+
+---
+
+Críticas e sugestões a este material sempre serão bem vindas.
+
+Para entrar em contato comigo, envie uma mensagem para <lineuacf@gmail.com>.
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

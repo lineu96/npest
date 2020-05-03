@@ -1,0 +1,105 @@
+---
+output:
+  html_document:                    # Classe de documento.
+    toc: true                       # Exibir sum?rio.
+    toc_depth: 2                    # Profundidade do sum?rio.
+    toc_float:                      # Sum?rio flutuante na borda.
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           # Se??es numeradas.
+    theme: flatly
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                 # Caminho para arquivo CSS.
+    fig_width: 7                    # Lagura das figuras.
+    fig_height: 6                   # Altura das figuras.
+    fig_caption: true               # Exibica??o de legenda.
+    fig_align: 'center'
+#    code_folding: hide              # Esconder/exibir bloco de c?digo.
+#    keep_md: true                   # Manter o arquivo md.
+    #template: quarterly_report.html # Caminho para o template.  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+---
+
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+
+---
+
+<font size="8"> 
+<p align=”center”> <b> Noções de Probabilidade e Estatística </b> </center>
+</font> 
+
+<font size="5"> 
+<p align=”center”> <b> Parte 7 - Tópicos interessantes não abordados </b> </center>
+</font>
+
+<font size="4"> 
+<p align=”center”> [Lineu Alberto Cavazani de Freitas](https://lineu96.github.io/st/) </center>
+</font> 
+
+---
+
+Na parte final deste material serão apresentadas algumas das técnicas famosas discutidas nas disciplinas de Estatística básica e outras mais sofisticadas. Para nenhum dos tópicos haverá um grande nível de profundidade, apenas será apresentada em que caso se aplica a técnica.
+
+---
+
+# **Testes Qui-Quadrado**
+
+Um importante modelo que recorrentemente surge quando o assunto são técnicas estatísticas é o modelo Qui-Quadrado. O modelo Qui-Quadrado é contínuo e assume valores não negativos. Sua densidade tem forma complexa e, na ausência de um computador, as probabilidades são obtidas via tabelas.
+
+Alguns importantes testes de hipóteses que envolvem o modelo Qui-Quadrado são: o teste de **aderência** e o teste de **independência**.
+
+O teste de aderência é utilizado para verificar adequação dos dados à um modelo de probabilidades conhecido. Uma maneira de se encontrar uma distribuição candidata é através da análise exploratória, com o uso de técnicas tais como o histograma e o box-plot. Deste modo, obtendo uma distribuição candidata compara-se a frequência observada nos dados com o que seria esperado na distribuição de probabilidades. Caso as frequências sejam próximas, concliu-se que os dados seguem a distribuição de probabilidades candidata. A estatística de teste é dada por 
+
+$$Q^2 = \sum_{i=1}^k \frac{(o_{i}-e_{i})^2}{e_{i}}$$
+
+em que $o_{i}$ e $e_{i}$ representam as frequências observadas e esperadas. Com o tamanho amostral suficientemente grande essa quantidade segue distribuição Qui-Quadrado com $k-1$ graus de liberdade ($\chi^2_{(k-1)}$) para testar a hipótese de que os dados seguem a distribuição candidata.
+
+Já o teste de independência é o mesmo apresentado na parte referente à análise exploratórita desta sequência. Trata-se da mesma quantidade e o mesmo procedimento, contudo em vez de se usar empiricamente a regra "valores próximos de 0 apontam para ausência de associação entre as variáveis", faz-se um teste de hipóteses a fim de verificar se as variáveis são independentes, tendo em vista que a estatística de teste segue distribuição Qui-Quadrado.
+
+---
+
+# **Comparação de duas médias**
+
+Os testes de comparação entre duas médias são utilizados quando estamos interessados em comparar duas populações. As situações possíveis são: comparação de amostras dependentes, amostras independentes com variâncias conhecidas ou desconhecidas, etc. No caso de amostras dependentes, isto é, para cada unidade amostral realiza-se duas medições da característica de interesse utiliza-se o teste t-pareado, o mais famoso quando se trata de comparação entre médias. Em geral, os testes para comparação de médias utilizam a distribuição $t$.
+
+---
+
+# **Análise de variância**
+
+A análise de variância é utilizada para comparação de três ou mais populações, definidas por uma variável qualitativa (fator), através de testes com as correspondentes médias de cada fator.
+
+---
+
+# **Modelos de regressão**
+
+Quando estamos interessados em estudar a relação entre duas variáveis ($X$ e $Y$) busca-se uma função de $X$ que explique $Y$. Na prática criamos modelos para o fenômeno em observação de forma que é conveniente supor que cada observação é formada por duas partes: uma previsível (ou controlada) e outra aleatória (ou não previsível).
+
+A parte previsível, incorpora o conhecimento sobre o fenômeno, e é usualmente expressa por uma função matemática com parâmetros desconhecidos. Enquanto que a parte aleatória deve obedecer algum modelo de probabilidade.
+
+Com isso, o trabalho é produzir estimativas para os parâmetros desconhecidos, com base em amostras observadas.
+
+A análise de regressão é a técnica estatística que analisa as relações existentes entre uma única variável (chamada de dependente ou resposta), e uma ou mais variáveis (chamadas independentes, explicativas ou covariáveis). O objetivo é estudar as relações entre as variáveis, a partir de um modelo
+matemático, permitindo estimar o valor de uma variável a partir da outra.
+
+Deste modo os modelos de regressão são técnicas que permitem avaliar como um conjunto de variáveis afeta uma de interesse. E também podem ser usados para fins de predição de resultados futuros. Existe uma grande gama de modelos para os mais diversos fins, dentre os quais os mais conhecidos são o modelo de regressão linear (simples e múltipla) e a classe dos modelos lineares generalizados.
+
+---
+
+Críticas e sugestões a este material sempre serão bem vindas.
+
+Para entrar em contato comigo, envie uma mensagem para <lineuacf@gmail.com>.
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

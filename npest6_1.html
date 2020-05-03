@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>npest6_1.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="npest1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Introdução à análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest3.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidades
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest4.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest5.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest7.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+<hr />
+<font size="8">
+<p align=”center”>
+<b> Noções de Probabilidade e Estatística </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Parte 6.1 - Inferência </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Conceitos iniciais e estimadores pontuais </b>
+</center>
+<p></font></p>
+<font size="4">
+<p align=”center”>
+<a href="https://lineu96.github.io/st/">Lineu Alberto Cavazani de Freitas</a>
+</center>
+<p></font></p>
+<hr />
+<div id="inferencia" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">1</span> <strong>Inferência</strong></h1>
+<p>A Inferência é o ramo da Estatística que objetiva estudar a população através de evidências fornecidas por uma amostra. Em outros termos, as técnicas de inferência permitem fazer afirmações sobre quantidades populacionais através de um subconjunto da população.</p>
+<p>É interessante observar que o objetivo da amostragem é gerar um subconjunto que seja representativo em relação a população, contudo é intuitivo notar que, caso se repita o processo de amostragem, uma amostra diferente da inicial será obtida e, consequentemente, as medidas de interesse calculadas (média, variância, etc.) em diferentes amostras não serão iguais, pois os elementos pertencentes à amostra serão diferentes.</p>
+<p>Isto quer dizer que mesmo o procedimento de amostragem estando correto sempre haverá aleatoriedade envolvida, contudo, objetivamos que diferentes amostras nos cedam respostas próximas ao valor que seria observado caso tivéssemos a população toda em mãos.</p>
+<p>Por exemplo, considere que estamos interessados em saber a altura média dos indivíduos do sexo masculino em uma região. Para saber a média exata teríamos que coletar a informação de TODOS os homens da região e obter a média. Na prática tal tarefa é inviável, então tomamos uma amostra de indivíduos do sexo masculido, obtemos a média para esta amostra e este valor é o nosso candidato à medida de interesse na população. Outra amostra, coletada da mesma maneira, nos forneceria outro valor, o que torna a medida dependente da amostra e, portanto, aleatória.</p>
+<p>Devido à natureza aleatória, todas as quantidades associadas à amostra devem receber tratamento probabilístico. Uma certa característica de interesse na população é representada por uma variável aleatória <span class="math inline">\(X\)</span>, da qual retira-se uma amostra (<span class="math inline">\(X_1,X_2,...,X_n\)</span>) de tamanho <span class="math inline">\(n\)</span>.</p>
+<p>Consideraremos que as amostras foram obtidas de modo a garantir que os elementos sejam independentes e tenham todos a mesma distribuição de probabilidade da variável <span class="math inline">\(X\)</span>.</p>
+<hr />
+</div>
+<div id="conceito-formal" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">2</span> <strong>Conceito formal</strong></h1>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória com função de probabilidade ou densidade de probabilidade denotada por <span class="math inline">\(f(x, \theta)\)</span>, em que <span class="math inline">\(\theta\)</span> é um parâmetro desconhecido, chamamos de inferência estatística o problema que consiste em especificar um ou mais valores para <span class="math inline">\(\theta\)</span>, baseado em um conjunto de valores <span class="math inline">\(X\)</span>.</p>
+<p>Uma sequência <span class="math inline">\(X_{1},...,X_{n}\)</span> de <span class="math inline">\(n\)</span> variáveis aleatórias independentes e identicamente distribuídas (<span class="math inline">\(i.i.d\)</span>) com função de probabilidade ou densidade de probabilidade <span class="math inline">\(f(x, \theta)\)</span> é uma amostra aleatória de tamanho <span class="math inline">\(n\)</span> da distribuição de <span class="math inline">\(X\)</span>, quando <span class="math inline">\(n&gt;1\)</span> a conjunta consiste no produtório das <span class="math inline">\(f(x_{i}, \theta)\)</span> individuais.</p>
+<p>O objetivo das técnicas de inferência é estudar uma quantidade populacional <span class="math inline">\(\theta\)</span> desconhecida, pois so temos uma amostra da população, por meio de estimativas pontuais e intervalares.</p>
+<p>A inferência estatística se divide em 3 ramos: <strong>estimação pontual</strong>, <strong>estimação intervalar</strong> e <strong>teste de hipótesses</strong>.</p>
+<hr />
+<div id="estimacao-pontual" class="section level2">
+<h2><span class="header-section-number">2.1</span> <strong>Estimação pontual</strong></h2>
+<p>A ideia consiste em utilizar a informação amostral para obter valores candidatos para a quantidade que seria observada na população. Deve-se garantir que estes candidatos vão refletir a realidade. Ou seja, as técnicas de estimação pontual fornecem um único valor numérico para uma quantidade que desejamos saber na população.</p>
+<hr />
+</div>
+<div id="estimacao-intervalar" class="section level2">
+<h2><span class="header-section-number">2.2</span> <strong>Estimação intervalar</strong></h2>
+<p>Como já discutido, diferentes amostras podem gerar diferentes resultados, o que dá um caráter aleatório a todas as medidas provenientes da amostra. Neste sentido, o objetivo da estimação intervalar é fornecer um intervalo de valores “plausíveis” para o parâmetro de interesse de forma que haja uma confiabilidade de que o real valor do parâmetro que seria observado caso tivéssemos toda a população em mãos está no intervalo.</p>
+<hr />
+</div>
+<div id="teste-de-hipoteses" class="section level2">
+<h2><span class="header-section-number">2.3</span> <strong>Teste de hipóteses</strong></h2>
+<p>Consiste em testar uma hipótese sobre um parâmetro populacional. Uma hipótese é uma afirmativa sobre uma propriedade da população enquanto que um teste de hipótese é um procedimento para se testar esta afirmativa.</p>
+<hr />
+</div>
+</div>
+<div id="parametros-estimadores-e-estimativas" class="section level1">
+<h1><span class="header-section-number">3</span> <strong>Parâmetros, Estimadores e Estimativas</strong></h1>
+<p>Alguns conceitos importantes são:</p>
+<ul>
+<li><p><strong>Parâmetro</strong>: é uma medida numérica que descreve alguma característica da população, na maior parte dos casos são desconhecidos e usualmente representados por letras gregas e genericamente representado por <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><strong>Espaço paramétrico</strong>: O conjunto em que <span class="math inline">\(\theta\)</span> pode assumir seus valores.</p></li>
+<li><p><strong>Estimador</strong>: a combinação de elementos da amostra, construída com a finalidade de representar, ou estimar, um parâmetro na população. Denotamos os estimadores por símbolos com acento circunflexo. Os valores numéricos assumidos pelos estimadores são chamados <strong>estimativas</strong> ou estatísticas. Como se tratam de funções da amostra, e diferentes amostras geram diferentes estimativas, estas quantidades são tratadas como variáveis aleatórias. As estimativas podem ser pontuais ou intervalares:</p>
+<ul>
+<li><p><strong>Estimativa pontual</strong>: fornecem como estimativa um único valor numérico para o parâmetro de interesse.</p></li>
+<li><p><strong>Estimativa intervalar</strong>: fornece um intervalo de valores “plausíveis” para o parâmetro de interesse.</p></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="propriedades-dos-estimadores" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">4</span> <strong>Propriedades dos estimadores</strong></h1>
+<p>Quando a amostragem é feita a partir de uma população descrita por uma função <span class="math inline">\(f(x, \theta)\)</span>, o conhecimento de <span class="math inline">\(\theta\)</span> a partir da amostra, gera todo o conhecimento sobre a população. Além disso, mais de uma função da amostra pode ser proposta para estimar o parâmetro de interesse. Dessa forma, é natural que se procure um método para se achar o melhor estimador para <span class="math inline">\(\theta\)</span>.</p>
+<p>O que nos leva às propriedades dos estimadores. Um bom estimador é: <strong>não viciado</strong>, <strong>consistente</strong> e <strong>eficiente</strong>.</p>
+<hr />
+<div id="vicio" class="section level2">
+<h2><span class="header-section-number">4.1</span> Vício</h2>
+<p>Um estimador <span class="math inline">\(\hat{\theta}\)</span> é não viciado ou não viesado para um parâmetro <span class="math inline">\(\theta\)</span> se seu valor esperado coincide com o parâmetro de interesse, isto é: <span class="math inline">\(E(\hat{\theta}) = \theta\)</span>.</p>
+<p>Independente do tamanho amostral esta propriedade deve ser válida.</p>
+<hr />
+</div>
+<div id="consistencia" class="section level2">
+<h2><span class="header-section-number">4.2</span> Consistência</h2>
+<p>Um estimador <span class="math inline">\(\hat{\theta}\)</span> é consistente, se, à medida que aumenta-se o tamanho amostral, o valor esperado converge para o parâmetro de interesse e a variância converge para 0, isto é:</p>
+<ul>
+<li><p><span class="math inline">\(\underset{n \to \infty}{lim} E(\hat{\theta}) = \theta.\)</span></p></li>
+<li><p><span class="math inline">\(\underset{n \to \infty}{lim} Var(\hat{\theta}) = 0.\)</span></p></li>
+</ul>
+<p>Note como o conceito de consistência está diretamente ligado ao tamanho amostral, diferentemente do conceito de vício.</p>
+<hr />
+</div>
+<div id="eficiencia" class="section level2">
+<h2><span class="header-section-number">4.3</span> Eficiência</h2>
+<p>Dados dois estimadores <span class="math inline">\(\hat{\theta_1}\)</span> e <span class="math inline">\(\hat{\theta_2}\)</span>, ambos não viciados para um parâmetro <span class="math inline">\(\theta\)</span>, dizemos que <span class="math inline">\(\hat{\theta_1}\)</span> é mais eficiente que <span class="math inline">\(\hat{\theta_2}\)</span> se <span class="math inline">\(Var(\hat{\theta_1}) &lt; Var(\hat{\theta_1})\)</span>, ou seja, quanto menor a variância, maior a eficiência.</p>
+<hr />
+</div>
+</div>
+<div id="principais-estimadores-pontuais" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">5</span> <strong>Principais estimadores pontuais</strong></h1>
+<p>Na prática algumas quantidades são mais frequentes em problemas que envolvem inferência e, por esta razão, seus estimadores e propriedades são conhecidos e bem definidos. Os principais são: a <strong>média</strong>, a <strong>proporção</strong> e a <strong>variância</strong>.</p>
+<hr />
+<div id="media" class="section level2">
+<h2><span class="header-section-number">5.1</span> Média</h2>
+<p>O parâmetro populacional de média é usualmente denotado por <span class="math inline">\(\mu\)</span>. O estimador, denotado por <span class="math inline">\(\bar{X}\)</span> é dado pela soma dos elementos dividido pelo tamanho amostral, ou seja,</p>
+<p><span class="math display">\[\bar{X} = \frac{X_1+X_2+...+X_n}{n}.\]</span></p>
+<p>O estimador para a média é não viciado e consistente.</p>
+<hr />
+</div>
+<div id="proporcao" class="section level2">
+<h2><span class="header-section-number">5.2</span> Proporção</h2>
+<p>Para a proporção observada na população, cujo parâmetro é denotado por <span class="math inline">\(p\)</span>, um estimador, denotado por <span class="math inline">\(\hat{p}\)</span> consiste na frequência amostral dividido pelo número de elementos, ou seja,</p>
+<p><span class="math display">\[\hat{p} =  \frac{freq. \ amostral}{n}.\]</span></p>
+<p>O estimador para a proporção é não viciado e consistente.</p>
+<hr />
+</div>
+<div id="variancia" class="section level2">
+<h2><span class="header-section-number">5.3</span> Variância</h2>
+<p>Para a variância, denotada por <span class="math inline">\(\sigma^2\)</span>, dois candidatos a estimadores destacam-se, são eles:</p>
+<ul>
+<li><span class="math inline">\(S^2 = \frac{1}{n-1} \left ( \sum_{i=1}^n X_i^2-n \bar{X}^2 \right )\)</span></li>
+<li><span class="math inline">\(\hat{\sigma}^2 = \frac{1}{n} \left ( \sum_{i=1}^n X_i-\bar{X} \right )^2\)</span></li>
+</ul>
+<p>O estimador dado por <span class="math inline">\(S^2\)</span> é não viciado e consistente, enquanto <span class="math inline">\(\hat{\sigma}^2\)</span> é <strong>viciado</strong> e consistente.</p>
+<hr />
+</div>
+</div>
+<div id="distribuicoes-amostrais" class="section level1">
+<h1><span class="header-section-number">6</span> <strong>Distribuições amostrais</strong></h1>
+<p>Quando uma amostra <span class="math inline">\(X_{1},...,X_{n}\)</span> é obtida, geralmente estamos interessados em um resumo destes valores, que pode ser expresso por uma estatística. E esta estatística é também uma variável aleatória, isto quer dizer que possui uma distribuição de probabilidade chamada distribuição amostral.</p>
+<p>Graças a esta distribuição podemos, além das estimativas pontuais, obter uma medida de precisão do valor obtido chamada estimativa intervalar ou intervalo de confiança.</p>
+<hr />
+</div>
+<div id="teorema-central-do-limite" class="section level1">
+<h1><span class="header-section-number">7</span> <strong>Teorema Central do Limite</strong></h1>
+<p>O Teorema Central do Limite (TCL) diz que para <span class="math inline">\(n\)</span> grande, a distribuição da <strong>média amostral</strong> se comporta segundo um modelo <strong>Normal</strong>. Se padronizarmos a média, a distribuição se comporta tal como uma Normal de <strong>média 0</strong> e <strong>variância 1</strong>. Além disso, quanto maior o tamanho da amostra, melhor é a aproximação. O teorema permite que utilizemos a distribuição Normal sempre que tivermos interesse em estudar a média amostral independente da distribuição da variável aleatória que gerou esta média. Ou seja, a distribuição amostral da média amostral <span class="math inline">\(\bar{X}\)</span>:</p>
+<p><span class="math display">\[\bar{X} \sim N\left ( \mu, \frac{\sigma^{2}}{n} \right )\]</span></p>
+<p>Formalmente: Seja uma amostra de tamanho <span class="math inline">\(n\)</span> retirada de uma população com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>. A amostra <span class="math inline">\(X_1,...,X_n\)</span> consiste de <span class="math inline">\(n\)</span> variávevis aleatórias independentes e com mesma distribuição. A média da amostra é denotada por <span class="math inline">\(\bar{X}\)</span>. Temos que:</p>
+<p><span class="math display">\[\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \xrightarrow[n \to \infty]{em \ dist.} N(0,1).\]</span></p>
+<hr />
+<p>Vamos verificar, através de um pequeno estudo de simulação, como o TCL é válido. Considerando as distribuições Uniforme, Binomial, Poisson, Exponencial e Normal foram geradas 1000 amostras em que variou-se o tamanho amostral. Para cada uma das amostras obteve-se a média e gerou-se o histograma. Note como os histogramas são simétricos, corroborando o que nos diz o TCL:</p>
+<p><img src="npest6_1_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+<p>Uma aplicação importante do TCL relaciona-se com a distribuição da proporção amostral. A proporção é a fração dos indivíduos com a característica de interesse na amostra. Isto é, <span class="math inline">\(\hat{p} = \frac{individuos \ com \ a \ caracteristica}{n}\)</span>. Se considerarmos uma variável aleatória <span class="math inline">\(Y_i\)</span> tal que</p>
+<p><span class="math display">\[Y_i = 
+\left\{\begin{matrix}
+1, &amp; se \ apresenta \ a \ característica \\ 
+0, &amp; caso \ contrário
+\end{matrix}\right.\]</span></p>
+<p>Podemos reescrever a proporção amostral como</p>
+<p><span class="math display">\[\hat{p} = \frac{Y_1+Y_2+...+Y_n}{n}=\sum_{i=1}^n\frac{Y_i}{n}=\bar{Y}.\]</span></p>
+<p>Logo, a proporção amostral nada mais é do que a média de variáveis aleatórias convenientemente definidas de tal forma que <span class="math inline">\(Y_1+Y_2+...+Y_n\)</span> formam uma sequência de variáveis aleatórias independentes seguindo distribuição de Bernoulli. Portanto tem média igual a <span class="math inline">\(p\)</span> e variância igual a <span class="math inline">\(p(1-p)\)</span>.</p>
+<p>Logo, pelo TCL, temos que:</p>
+<p><span class="math display">\[\frac{\bar{Y}-E(\bar{Y})}{Var(\bar{Y})}=\frac{\hat{p}-p}{\sqrt{p(1-p)/n}} \xrightarrow[n \to \infty]{em \ dist.} N(0,1)\]</span></p>
+<hr />
+<p>Críticas e sugestões a este material sempre serão bem vindas.</p>
+<p>Para entrar em contato comigo, envie uma mensagem para <a href="mailto:lineuacf@gmail.com" class="email">lineuacf@gmail.com</a>.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>npest4.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="npest1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Introdução à análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest3.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidades
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest4.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest5.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest7.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+<hr />
+<font size="8">
+<p align=”center”>
+<b> Noções de Probabilidade e Estatística </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Parte 4 - Variáveis aleatórias discretas </b>
+</center>
+<p></font></p>
+<font size="4">
+<p align=”center”>
+<a href="https://lineu96.github.io/st/">Lineu Alberto Cavazani de Freitas</a>
+</center>
+<p></font></p>
+<hr />
+<div id="variaveis-aleatorias-discretas" class="section level1">
+<h1><span class="header-section-number">1</span> <strong>Variáveis aleatórias discretas</strong></h1>
+<p>Uma variável aleatória é classificada como discreta se assume um conjunto de valores enumerável. Dessa forma, é possível atribuir probabilidades para um ponto específico.</p>
+</div>
+<div id="funcao-de-probabilidade" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>Função de probabilidade</strong></h1>
+<p>Seja uma variável aleatória (v.a) discreta <span class="math inline">\(X\)</span>, que assume os valores <span class="math inline">\(x_{1}, x_{2}, ... , x_{n}, ...\)</span>. Sua função de probabilidade (fp) é a função que atribui probabilidades a cada <span class="math inline">\(x_{i}\)</span> em que:</p>
+<ul>
+<li><p><span class="math inline">\(0 \leq P(x_{i}) \leq 1\)</span>, <span class="math inline">\(i = 1, 2, ...\)</span></p></li>
+<li><p><span class="math inline">\(\sum_{i} P(x_{i}) = 1\)</span></p></li>
+</ul>
+<p>As possíveis notações são:</p>
+<ul>
+<li><span class="math inline">\(P(X=x_i)=p(x_i)=p_i, \ i=1,2,...\)</span></li>
+<li><table style="border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto" class="tg">
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+X
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+x1
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+x2
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+x3
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+…
+</td>
+</tr>
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+pi
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+p1
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+p2
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+p3
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+…
+</td>
+</tr>
+</table></li>
+</ul>
+<p>As variáveis aleatórias são completamente caracterizadas pela sua função de probabilidade e é importante obter a função que melhor represente o comportamento da variável na população.</p>
+<p>Considere o experimento de lançar uma moeda duas vezes consecutivas e observar obervar o resultado, temos interesse em verificar o número de caras, chamaremos de variável aleatória N. O espaço amostral é dado pelas combinações:</p>
+<ul>
+<li>se {cara;cara}, então 2 caras.</li>
+<li>se {cara;coroa}, então 1 cara.</li>
+<li>se {coroa;cara}, então 1 cara.</li>
+<li>se {coroa;coroa}, então 0 cara.</li>
+</ul>
+<p>Logo, a função de probabilidade para a variável aleatória N (número de caras em 2 lançamentos) é dada por:</p>
+<table style="border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto" class="tg">
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:middle">
+N
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:middle">
+P(N=n)
+</td>
+</tr>
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:middle">
+0
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:middle">
+1/4
+</td>
+</tr>
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+1
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:top">
+1/2
+</td>
+</tr>
+<tr>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+2
+</td>
+<td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">
+1/4
+</td>
+</tr>
+</table>
+<hr />
+</div>
+<div id="funcao-de-distribuicao-acumulada-de-probabilidade" class="section level1">
+<h1><span class="header-section-number">3</span> <strong>Função de distribuição acumulada de probabilidade </strong></h1>
+<p>Em certas situações pode ser útil calcularmos a probabilidade acumulada até um certo valor. A função de distribuição ou função acumulada de probablidade de uma v.a <span class="math inline">\(X\)</span> é dada por:</p>
+<p><span class="math display">\[F(x) = P(X \leq x)\]</span></p>
+<p>Considerando o exemplo em que a variável aleatória n representa o número de caras observadas em 2 lançamentos, a função acumulada de probailidade fica dada por:</p>
+<p><span class="math display">\[F=
+\left\{\begin{matrix}
+0 &amp; se \ n&lt;0\\
+1/4 &amp; se \ n=0\\ 
+3/4 &amp; se \ n=1\\ 
+1 &amp; se \ n \geq 2
+\end{matrix}\right.\]</span></p>
+<p>A função de distribuição acumulada também pode ser convenientemente representada através de um gráfico que tem forma de escada:</p>
+<p><img src="npest4_files/figure-html/unnamed-chunk-1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="medidas-de-posicao-para-v.as-discretas" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">4</span> <strong>Medidas de posição para V.A’s discretas</strong></h1>
+<p>Sabemos que a descrição completa do comportamento de uma variável aleatória discreta é feita através da sua função de probabilidade, desta forma presume-se que qualquer quantidade destinada a resumir os valores observados da variável devem envolver esta função.</p>
+<p>Para definição das medidas de posição central para variáveis aleatórias discretas, suponha que os possíveis valores da variável aleatória sejam representados por <span class="math inline">\(x_1,x_2,...,x_k\)</span> com correspondentes probabilidades <span class="math inline">\(p_1,p_2,...,p_k\)</span>.</p>
+<hr />
+<div id="media" class="section level2">
+<h2><span class="header-section-number">4.1</span> <strong>Média</strong></h2>
+<p>Também chamada de valor esperado e esperança, representa o ponto de equilíbrio da distribuição dos valores da variável aelatória. A média para uma variável <span class="math inline">\(X\)</span> é dada por:</p>
+<p><span class="math display">\[E(X)=\sum_{i=1}^{k}x_ip_i\]</span></p>
+<p>Notações alternativas para <span class="math inline">\(E(X)\)</span> são: <span class="math inline">\(\mu_X\)</span> ou simplesmente <span class="math inline">\(\mu\)</span></p>
+<hr />
+</div>
+<div id="mediana" class="section level2">
+<h2><span class="header-section-number">4.2</span> <strong>Mediana</strong></h2>
+<p>A mediana é o valor <span class="math inline">\(Md\)</span> que satisfaz às seguintes condições</p>
+<p><span class="math display">\[P(X \geq Md) \geq 1/2 \ e \ P(X \leq Md) \leq 1/2\]</span></p>
+<hr />
+</div>
+<div id="moda" class="section level2">
+<h2><span class="header-section-number">4.3</span> <strong>Moda</strong></h2>
+<p>A moda (<span class="math inline">\(Mo\)</span>) é o valor (ou valores) da variável com maior probabilidade de ocorrência</p>
+<p><span class="math display">\[Mo = max(p_1,p_2,...,p_k)\]</span></p>
+<hr />
+</div>
+</div>
+<div id="medidas-de-dispersao-para-v.as" class="section level1">
+<h1><span class="header-section-number">5</span> <strong>Medidas de dispersão para V.A’s</strong></h1>
+<p>Para variáveis aleatórias, a medida de dispersão mais utilizada é a variância.</p>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória com <span class="math inline">\(P(X_i=x_i)=p_i, \ i=1,2,...,k\)</span> e média <span class="math inline">\(\mu\)</span>. A variância de <span class="math inline">\(X\)</span> é a ponderação pelas respectivas probabilidades, dos desvios relativos à média, elevados ao quadrado, isto é</p>
+<p><span class="math display">\[Var(X)=\sum_{i=1}^{k} (x_i-\mu)^2p_i\]</span></p>
+<p>Notações alternativas para <span class="math inline">\(Var(X)\)</span> são <span class="math inline">\(\sigma^2\)</span>, ou ainda <span class="math inline">\(\sigma_X^2\)</span>. Extraindo a raiz quadrada desta quantidade, obtém-se o desvio padrão (<span class="math inline">\(Dp(X)\)</span>, <span class="math inline">\(\sigma\)</span> ou <span class="math inline">\(\sigma_X\)</span>).</p>
+<p>A variância definida anteriormente pode ainda ser considerada como valor esperadode uma nova variável aleatória, o desvio ao quadrado. Isto é:</p>
+<p><span class="math display">\[Var(X)= E[(X-\mu)^2]\]</span></p>
+<p>ou ainda</p>
+<p><span class="math display">\[Var(X)= E(X^2)-\mu^2= \sum_{i=1}^{k} p_i x_i^2-\mu^2.\]</span></p>
+<hr />
+</div>
+<div id="principais-modelos-discretos" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">6</span> <strong>Principais modelos discretos</strong></h1>
+<p>Algumas variáveis aleatórias aparecem com bastante frequência em situações práticas. Nesses casos, a função de probabilidade pode ser escrita de maneira mais compacta, isto é, existe uma lei para atribuir as probabilidades.</p>
+<p>As mais famosas e conhecidas funções discretas de probabilidade são:</p>
+<ul>
+<li><strong>Uniforme</strong></li>
+<li><strong>Bernoulli</strong></li>
+<li><strong>Binomial</strong></li>
+<li><strong>Geométrico</strong></li>
+<li><strong>Poisson</strong></li>
+<li><strong>Hipergeométrico</strong></li>
+</ul>
+<hr />
+<div id="uniforme" class="section level2">
+<h2><span class="header-section-number">6.1</span> <strong>Uniforme</strong></h2>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória que assume os valores <span class="math inline">\(1,2,...,k\)</span>. Dizemos que <span class="math inline">\(X\)</span> segue o modelo Uniforme Discreto se atribui a mesma probabilidade (<span class="math inline">\(1/k\)</span>) a cada um dessses <span class="math inline">\(k\)</span> valores. A função de probabilidade é dada por:</p>
+<p><span class="math display">\[P(X=j) = \frac{1}{k}, \ j=1,2,...,k.\]</span></p>
+<p>Para indicar que a variável aleatória X segue o modelo Uniforme Discreto usa-se a notação <span class="math inline">\(X \sim U_D[1,k]\)</span>. Além disso, <span class="math inline">\(E(X) = \frac{1+k}{2}\)</span> e <span class="math inline">\(Var(X) = \frac{k^2 - 1}{12}\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="bernoulli" class="section level2">
+<h2><span class="header-section-number">6.2</span> <strong>Bernoulli</strong></h2>
+<p>Dizemos que a variável <span class="math inline">\(X\)</span> segue o modelo de Bernoulli se atribui 0 ou 1 à ocorrência de fracasso ou sucesso. Seja <span class="math inline">\(p\)</span> a probabilidade de sucesso, <span class="math inline">\(0 \leq p \leq 1\)</span>, a função de probabilidade é dada por:</p>
+<p><span class="math display">\[P(X=x) = p^x(1-p)^{1-x}, \ x=0,1.\]</span></p>
+<p>Para indicar que a variável aleatória X segue o modelo Bernoulli usa-se a notação <span class="math inline">\(X \sim b(p)\)</span>. Além disso, <span class="math inline">\(E(X) = p\)</span> e <span class="math inline">\(Var(X) = p(1-p)\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="binomial" class="section level2">
+<h2><span class="header-section-number">6.3</span> <strong>Binomial</strong></h2>
+<p>A repetição de ensaios de Bernoulli independentes dá origem à um importante modelo discreto: o modelo Binomial. Sendo assim cosidere a repetição de <span class="math inline">\(n\)</span> ensaios de Bernoulli independentes e todos com a mesma probabilidade de sucesso <span class="math inline">\(p\)</span>. A variável que conta o número de sucessos é denominada Binomial com parâmetros <span class="math inline">\(n\)</span> e <span class="math inline">\(p\)</span> e sua função de probabilidade é dada por:</p>
+<p><span class="math display">\[P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}, \ k=0,1,2,...,n.\]</span></p>
+<p>Além disso, <span class="math inline">\(E(X) = np\)</span> e <span class="math inline">\(Var(X) = np(1-p)\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="geometrico" class="section level2">
+<h2><span class="header-section-number">6.4</span> <strong>Geométrico</strong></h2>
+<p>Dizemos que uma variável aleatória <span class="math inline">\(X\)</span> tem distribuição Geométrica de parâmetro <span class="math inline">\(p\)</span>, se sua função de probabilidade tem a forma:</p>
+<p><span class="math display">\[P(X=k) = p(1-p)^k, \ 0 \leq p \leq 1 \ e \ k=0,1,2,... \]</span></p>
+<p>Usa-se a notação <span class="math inline">\(X \sim G(p)\)</span>. Interpretando <span class="math inline">\(p\)</span> como a probabilidade de sucesso, a distribuição Geométrica pode ser pensada como o número de ensaios de Bernoulli que precedem o primeiro sucesso. Além disso, <span class="math inline">\(E(X) = \frac{1-p}{p}\)</span> e <span class="math inline">\(Var(X) = \frac{1-p}{p^2}\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="poisson" class="section level2">
+<h2><span class="header-section-number">6.5</span> <strong>Poisson</strong></h2>
+<p>Uma variável aleatória <span class="math inline">\(X\)</span> tem distribuição de Poisson com parâmetro <span class="math inline">\(\lambda&gt;0\)</span>, se sua função de probabilidade é dada por:</p>
+<p><span class="math display">\[P(X=k) = \frac{e^{-\lambda} \lambda^k}{k!}, \ k = 0,1,2,...\]</span></p>
+<p>O parâmetro <span class="math inline">\(\lambda\)</span> usualmente refere-se à taxa de ocorrência, isto é, a frequência média ou esperada num determinado intervalo. Usa-se a notação <span class="math inline">\(X \sim Po(\lambda)\)</span>. Além disso, <span class="math inline">\(E(X) = Var(X) = \lambda\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="hipergeometrico" class="section level2">
+<h2><span class="header-section-number">6.6</span> <strong>Hipergeométrico</strong></h2>
+<p>Considere um conjunto de <span class="math inline">\(n\)</span> objetos dos quais <span class="math inline">\(m\)</span> são do tipo I e <span class="math inline">\(n-m\)</span> são do tipo II. Para um sorteio de <span class="math inline">\(r\)</span> objetos <span class="math inline">\((r&lt;n)\)</span>, feito ao acaso e sem reposição. Defina <span class="math inline">\(X\)</span> como o número de objetos do tipo I selecionados. Diremos que a variável aleatória X segue o modelo Hipergeométrico e sua função de probabilidade é dada pela expressão:</p>
+<p><span class="math display">\[P(X=k) = \frac{\binom{m}{k} \binom{n-m}{r-k}}{\binom{n}{r}}, k=max(0,r-(n-m)),...,min(r,m)\]</span></p>
+<p>Além disso, <span class="math inline">\(E(X) = \frac{rm}{n}\)</span> e <span class="math inline">\(Var(X) = \frac{rm(n-m)(n-r)}{n^2(n-1)}\)</span>.</p>
+<hr />
+<p><img src="npest4_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+<p>Críticas e sugestões a este material sempre serão bem vindas.</p>
+<p>Para entrar em contato comigo, envie uma mensagem para <a href="mailto:lineuacf@gmail.com" class="email">lineuacf@gmail.com</a>.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>npest6_2.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="npest1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Introdução à análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest3.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidades
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest4.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest5.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest7.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+<hr />
+<font size="8">
+<p align=”center”>
+<b> Noções de Probabilidade e Estatística </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Parte 6.2 - Inferência </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Estimação por intervalo e testes de hipótese </b>
+</center>
+<p></font></p>
+<font size="4">
+<p align=”center”>
+<a href="https://lineu96.github.io/st/">Lineu Alberto Cavazani de Freitas</a>
+</center>
+<p></font></p>
+<hr />
+<div id="estimacao-por-intervalo" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">1</span> <strong>Estimação por intervalo</strong></h1>
+<p>Quando estimamos um parâmetro podemos ter estimativas pontuais, isto é, um único valor numérico para o parâmetro de interesse ou estimativas intervalares, isto é, um intervalo de possíveis valores para o parâmetro de interesse.</p>
+<p>Por serem variáveis aleatórias, as estatísticas têm distribuição de probabilidade, são as chamadas distribuições amostrais, e os intervalos de confiança são obtidos a partir destas distribuições.</p>
+<p>O intervalo de confiança é uma estimativa mais informativa pois, aliada à estimativa pontual, nos fornece informação quanto a precisão do valor observado.</p>
+<p>Interpretação:</p>
+<ol style="list-style-type: decimal">
+<li><p>“<strong>Temos <span class="math inline">\(\gamma\)</span> % de confiança de que o intervalo entre (limite inferior) e (limite superior) realmente contém o parâmetro</strong>”.</p></li>
+<li><p>“<strong>Se obtivermos várias amostras de mesmo tamanho e, para cada uma delas, calcularmos os correspondentes intervalos de confiança com coeficiente de confiança <span class="math inline">\(\gamma\)</span>, esperamos que a proporção de intervalos que contenham o valor do parâmetro seja igual a <span class="math inline">\(\gamma\)</span>.</strong>”</p></li>
+</ol>
+<p>Lembre-se: <strong>o parâmetro é fixo</strong>, contudo <strong>diferentes amostras levam a diferentes intervalos</strong>. Por isso esperamos que o <strong>intervalo contenha o parâmetro</strong> e não que o parâmetro esteja contido no intervalo.</p>
+<hr />
+<div id="intervalos-de-confianca-para-mu-com-sigma-conhecido" class="section level2">
+<h2><span class="header-section-number">1.1</span> Intervalos de confiança para <span class="math inline">\(\mu\)</span>, com <span class="math inline">\(\sigma\)</span> conhecido</h2>
+<p>O TCL permite a obtenção de intervalos de confiança para <span class="math inline">\(\mu\)</span>, mesmo quando a distribuição das variáveis aleatórias que constituem a amostra não seguem distribuição Normal. Neste caso, o intervalo terá coeficiente de confiança aproximadamente <span class="math inline">\(\gamma\)</span>, e esta aproximação melhora conforme se aumenta o tamanho amostral.</p>
+<p>Se:</p>
+<ul>
+<li>Temos uma amostra aleatória simples.</li>
+<li><span class="math inline">\(\sigma\)</span> é conhecido.</li>
+<li>A população segue distribuição normal ou n &gt; 30.</li>
+</ul>
+<p>Então:</p>
+<ul>
+<li>Determine o nível de confiança <span class="math inline">\(\gamma\)</span>.</li>
+<li>Encontre o valor crítico <span class="math inline">\(z_{\gamma/2}\)</span>.</li>
+<li>Calcule a margem de erro <span class="math inline">\(e = z_{\gamma/2} . \frac{\sigma}{\sqrt{n}}\)</span>.</li>
+</ul>
+<p>O intervalo de confiança para <span class="math inline">\(\mu\)</span>, com coeficiente de confiança <span class="math inline">\(\gamma\)</span> é dado por:</p>
+<p><span class="math display">\[IC = \bar{x} \pm z_{\gamma/2}\left ( \frac{\sigma}{\sqrt{n}} \right )\]</span></p>
+<hr />
+</div>
+<div id="intervalos-de-confianca-para-mu-com-sigma-desconhecido" class="section level2">
+<h2><span class="header-section-number">1.2</span> Intervalos de confiança para <span class="math inline">\(\mu\)</span>, com <span class="math inline">\(\sigma\)</span> desconhecido</h2>
+<p>Na maioria das situações práticas, não sabemos o verdadeiro valor do desvio padrão populacional <span class="math inline">\(\sigma\)</span> e por isso, ao invés de utilizar a distribuição Normal, usa-se a <strong>t de Student</strong>. Esta distribuição possui caudas mais pesadas que a Normal, fazendo com que a incerteza a respeito da variabilidade seja incorporada no intervalo de confiança.</p>
+<p>Se:</p>
+<ul>
+<li>Temos uma amostra aleatória simples.</li>
+<li><span class="math inline">\(\sigma\)</span> é DESconhecido, mas temos uma estimativa <span class="math inline">\(s\)</span>.</li>
+<li>A população segue distribuição normal ou n &gt; 30.</li>
+</ul>
+<p>Então:</p>
+<ul>
+<li>Determine o nível de confiança <span class="math inline">\(\gamma\)</span>.</li>
+<li>Encontre o valor crítico <span class="math inline">\(t_{\gamma/2}\)</span>.</li>
+<li>Calcule a margem de erro <span class="math inline">\(e = t_{\gamma/2} . \frac{s}{\sqrt{n}}\)</span>.</li>
+</ul>
+<p>O intervalo de confiança para <span class="math inline">\(\mu\)</span>, com coeficiente de confiança <span class="math inline">\(\gamma\)</span> é dado por:</p>
+<p><span class="math display">\[IC = \bar{x} \pm t_{\gamma/2}\left ( \frac{s}{\sqrt{n}} \right )\]</span></p>
+<hr />
+</div>
+<div id="intervalo-de-confianca-para-a-proporcao-p" class="section level2">
+<h2><span class="header-section-number">1.3</span> Intervalo de confiança para a proporção <span class="math inline">\(p\)</span></h2>
+<p>O procedimento para obtenção de um intervalo de confiança para a proporção é:</p>
+<p>Se:</p>
+<ul>
+<li>Temos uma amostra aleatória simples.</li>
+<li>As condições para a distribuição binomial são satisfeitas:
+<ul>
+<li>As tentativas são independentes.</li>
+<li>Há duas categorias de resultado (“sucesso”, “fracasso”).</li>
+<li>A probabilidade de sucesso <span class="math inline">\(p\)</span> permanece constante.</li>
+</ul></li>
+<li>A distribuição Normal pode ser usada como aproximação para a distribuição binomial, ou seja, <span class="math inline">\(np ≥ 5\)</span> e <span class="math inline">\(np(1 − p) ≥ 5\)</span>.</li>
+</ul>
+<p>Então:</p>
+<ul>
+<li>Determine o nível de confiança <span class="math inline">\(\gamma\)</span>.</li>
+<li>Encontre o valor crítico <span class="math inline">\(z_{\gamma/2}\)</span>.</li>
+<li>Calcule a margem de erro <span class="math inline">\(e = z_{\gamma/2} . \sqrt{\frac{p(1-p)}{n}}\)</span>.</li>
+</ul>
+<p>O intervalo de confiança para <span class="math inline">\(p\)</span>, com coeficiente de confiança <span class="math inline">\(\gamma\)</span> é dado por:</p>
+<p><span class="math display">\[IC = \hat{p} \pm z_{\gamma/2} \sqrt{\frac{p(1-p)}{n}}\]</span></p>
+<p>Contudo, note que dentro da raiz na expressão do intervalo de confiança, há a quantidade <span class="math inline">\(p\)</span>, que é desconhecida. Duas abordagens são válidas:</p>
+<ul>
+<li>Substituir <span class="math inline">\(p\)</span> por <span class="math inline">\(\hat{p}\)</span>.</li>
+<li>Substituir <span class="math inline">\(p\)</span> por <span class="math inline">\(1/4\)</span>, considerando que a expressão <span class="math inline">\(p(1-p)\)</span> tem valor máximo igual a <span class="math inline">\(1/4\)</span> quando <span class="math inline">\(0\leq p \leq 1\)</span>.</li>
+</ul>
+<p>A primeira alternativa é considerada <strong>otimista</strong>, pois considera que a estimativa <span class="math inline">\(\hat{p}\)</span> é suficientemente próxima da verdadeira proporção <span class="math inline">\(p\)</span>. Enquanto que a segunda alternativa é considerada <strong>conservadora</strong>, pois considera o pior cenário possível, fazendo com que o intervalo de confiança fique maior.</p>
+<hr />
+</div>
+</div>
+<div id="teste-de-hipoteses" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>Teste de hipóteses</strong></h1>
+<p>Os principais objetivos da Inferência Estatística são estimar parâmetros populacionais (por meio de estimativas pontuais e intervalares) e testar hipóteses sobre estes parâmetros.</p>
+<p>Uma <strong>hipótese</strong> é uma afirmativa sobre uma propriedade da população e um <strong>teste de hipótese</strong> é o procedimento pelo qual se verifica esta propriedade.</p>
+<p>Em geral, enunciamos uma hipótese <strong>nula</strong> e uma <strong>alternativa</strong> de forma que:</p>
+<ul>
+<li><span class="math inline">\(H_{0}\)</span>: Hipótese de <strong>igualdade</strong>. Afirma-se que o valor do parâmetro é igual a algum valor especificado.</li>
+<li><span class="math inline">\(H_{1}\)</span>: Hipótese de <strong>diferença</strong>. Afirma-se que o valor do parâmetro é apenas maior, ou apenas menor, ou ainda apenas diferente daquele que foi enunciado na hipótese nula.</li>
+</ul>
+<p>As hipóteses, considerando <span class="math inline">\(\theta\)</span> um parâmetro de interesse, podem ser:</p>
+<center>
+<table>
+<tr>
+<td>
+<span class="math display">\[
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta \neq \theta_0
+\end{matrix}\right.\\
+\]</span>
+</td>
+<td>
+           
+</td>
+<td>
+<span class="math display">\[
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta &lt; \theta_0
+\end{matrix}\right.\\
+\]</span>
+</td>
+<td>
+           
+</td>
+<td>
+<span class="math display">\[
+\left\{\begin{matrix}
+H_0: \theta = \theta_0
+\\ 
+H_1: \theta &gt; \theta_0
+\end{matrix}\right.\\
+\]</span>
+</td>
+</tr>
+</table>
+</center>
+<p>Na prática podemos <strong>rejeitar</strong> ou <strong>não rejeitar</strong> a hipótese nula <span class="math inline">\(H_{0}\)</span>. Não se usa o termo <strong>aceitar</strong> a hipótese nula pois não se pode aceitar uma hipótese baseada apenas em evidências amostrais.</p>
+<p>Podemos cometer erros ao testar hipóteses, são eles:</p>
+<ul>
+<li>Erro do tipo I (<span class="math inline">\(\alpha\)</span>): <strong>Rejeitar</strong> <span class="math inline">\(H_{0}\)</span> quando <span class="math inline">\(H_{0}\)</span> é <strong>verdadeira</strong>.</li>
+<li>Erro do tipo II (<span class="math inline">\(\beta\)</span>): <strong>Não rejeitar</strong> <span class="math inline">\(H_{0}\)</span> quando <span class="math inline">\(H_{0}\)</span> é <strong>falsa</strong>.</li>
+</ul>
+<p>O ideal é que <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span> sejam próximos de 0, na prática a medida que diminui-se o <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> aumenta. Nossa preocupação é sempre evitar o erro do tipo I. Por isso <span class="math inline">\(\alpha\)</span> recebe o nome de <strong>nível de significância</strong>.</p>
+<p>As etapas para realização de um teste de hipóteses são:</p>
+<ul>
+<li>Enunciar as hipóteses nula e alternativa.</li>
+<li>Definir a forma da região crítica, com base na hipótese alternativa.</li>
+<li>Identificar a distribuição do estimador e obter sua estimativa.</li>
+<li>Fixar <span class="math inline">\(\alpha\)</span> e obter a região crítica.</li>
+<li>Interpretar o resultado.</li>
+</ul>
+<hr />
+<div id="teste-para-a-media-populacional" class="section level2">
+<h2><span class="header-section-number">2.1</span> Teste para a média populacional</h2>
+<p>Considerando dados em que o modelo Normal é adequado, quando estamos interessados em testar hipóteses acerca da média populacional utilizamos a média amostral <span class="math inline">\(\bar{X}\)</span>, pois é um estimador não viciado e consistente de <span class="math inline">\(\mu\)</span>.</p>
+<p>Considere um exemplo genérico, em que estamos interessados em verificar se a média é igual ou menor que 18. Para isso, considere que a variável de interesse segue distribuição Normal com desvio padrão conhecido igual a 6 e o tamanho amostral é igual a 30. Logo as hipóteses de interesse são:</p>
+<p><span class="math display">\[
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu &lt; 18
+\end{matrix}\right.\\
+\]</span></p>
+<p>Com <span class="math inline">\(\alpha\)</span> conhecido, o valor crítico <span class="math inline">\(x_c\)</span> é dado por</p>
+<p><span class="math display">\[
+P(\bar{X}&lt;x_c|\mu=18) = P(\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} &lt; \frac{x_c-18}{6/\sqrt{30}}) = P(Z &lt; z_c)
+\]</span></p>
+<p><span class="math display">\[
+z_c= \frac{x_c-18}{6/\sqrt{30}} \Rightarrow  x_c = 18+z_c \frac{6}{\sqrt{30}}
+\]</span></p>
+<p>Considerando <span class="math inline">\(\alpha = 0,05\)</span>, <span class="math inline">\(z_c=-1,64\)</span> e <span class="math inline">\(x_c = 16,20\)</span>. Como se trata de um teste unilateral à esquerda, a chamada Região Crítica (conjunto de números reais para os quais rejeita-se a hipótese nula) é dada por:</p>
+<p><span class="math display">\[RC=\left \{ x \in \mathbb{R}: x &lt; 16,20 \right \}\]</span></p>
+<p>Se o valor observado pertencer à chamada região crítica, rejeita-se a hipótese nula. Então, caso a amostra forneça média amostral menor que 16,20, este valor pertencerá à região crítica e conclui-se que rejeitamos <span class="math inline">\(H_0\)</span> ao nível de significância de 5% (<span class="math inline">\(\alpha = 0,05\)</span>). Caso contrário, conclui-se que não houve evidência suficiente para a não rejeição da hipótese nula.</p>
+<hr />
+<p>Caso a hipótese de interesse fosse:</p>
+<p><span class="math display">\[
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu &gt; 18
+\end{matrix}\right.\\
+\]</span></p>
+<p>Alteraria-se o <span class="math inline">\(z_c\)</span> para 1,64, pois é o valor da distribuição Normal Padrão cuja área restante à direita é igual ao 0,05 especificado como <span class="math inline">\(\alpha\)</span>. As interpretações seguem a mesma lógica.</p>
+<hr />
+<p>Caso a hipótese de interesse fosse:</p>
+<p><span class="math display">\[
+\left\{\begin{matrix}
+H_0: \mu = 18
+\\ 
+H_1: \mu \neq 18
+\end{matrix}\right.\\
+\]</span></p>
+<p>existiriam dois valores <span class="math inline">\(x_c\)</span>: um à esquerda e outro à direita. Para obtenção destes valores basta utilizar o valor <span class="math inline">\(\alpha/2\)</span> e encontrar os correspondentes valores <span class="math inline">\(x_c\)</span> tanto para o caso da hipótese alternativa ser <span class="math inline">\(\mu&lt;18\)</span> quanto para <span class="math inline">\(\mu&gt;18\)</span>, caso o valor obtido esteja dentro de qualquer uma das duas regiões, rejeita-se a hipótese nula.</p>
+<hr />
+<p>A ausência de normalidade pode ser contornada com o auxílio do Teorema Central do Limite que nos garante que, para amostras grandes, a média amostral tem distribuição Normal.</p>
+<hr />
+<p>Lembrando o que foi apresentado anteriormente, a proporção (número de sucessos/número de tentativas) pode ser interpretada como a média de uma variável aleatória convenientemente definida. Desta forma, o procedimento para testar hipóteses a respeito da proporção é extremamente similar ao que foi apresentado. Para esta situação, admitimos que:</p>
+<p><span class="math display">\[\hat{p} \sim N(p,p(1-p)/n)\]</span></p>
+<hr />
+</div>
+<div id="teste-para-a-media-com-variancia-desconhecida" class="section level2">
+<h2><span class="header-section-number">2.2</span> Teste para a média com variância desconhecida</h2>
+<p>Na prática, existem diversas situações em que a variância populacional é desconhecida. Lembre-se que o TCL nos garante que a média amostral segue sempre distribuição Normal quando o tamanho amostral aumenta.</p>
+<p>Contudo a ausência de informação quanto à variabilidade da população gera a necessidade de estimarmos esta quantidade. Em geral utiliza-se a já apresentada estatística <span class="math inline">\(S^2\)</span>.</p>
+<p>E a variável padronizada é dada por:</p>
+<p><span class="math display">\[
+T = \frac{\bar{X}-\mu}{S/\sqrt{n}}
+\]</span></p>
+<p>A variável <span class="math inline">\(T\)</span> segue distribuição <span class="math inline">\(t\)</span> de Student, denotada por <span class="math inline">\(t_{(n-1)}\)</span> em que <span class="math inline">\((n-1)\)</span> são os chamados graus de liberdade da distribuição.</p>
+<p>Tal como a distribuição Normal, trata-se de uma distribuição com densidade de probabilidade consideravelmente complexa e usa-se tabelas para obtenção de probabilidades de interesse ao invés de calcular via integração.</p>
+<p>A <span class="math inline">\(t\)</span> é simétrica, tal como a distribuição Normal. E a medida que o tamanho amostral aumenta, as densidades convergem. Para tamanhos amostrais reduzidos a diferença entre as distribuições está principalmente nas caudas, a variabilidade da distribuição <span class="math inline">\(t\)</span> é maior que a da Normal, fazendo com que as caudas sejam mais “pesadas” e a incerteza quanto à ausência do real valor da variância seja incorporado pelo modelo adotado.</p>
+<p>Note que como utiliza-se a variância amostral, diferentes amostras vão resultar em diferentes resultados e, em alguns casos, as conclusões podem mudar de amostra para amostra.</p>
+<p>Considere um exemplo genérico em que estamos interessados em testar:</p>
+<p><span class="math display">\[
+\left\{\begin{matrix}
+H_0: \mu = 12
+\\ 
+H_1: \mu \neq 12
+\end{matrix}\right.\\
+\]</span></p>
+<p>em um problema em que a amostra fornecida para a variável de interesse foi: 14,4; 12,9; 15,0; 13,7; e 13,5. Não temos informação quanto à variância populacional e desejamos testar a hipótese considerando 1% de significância.</p>
+<p>A região crítica é da forma: <span class="math inline">\(RC = \left \{ t \in \mathbb{R}| t&lt;t_1 \ ou \ t&lt;t_2 \right \}.\)</span> Para obtenção das regiões críticas temos:</p>
+<p><span class="math display">\[
+T=\frac{\bar{X}-12}{S/\sqrt{5}}\sim t_{(4)}.
+\]</span></p>
+<p>E, da tabela da distribuição <span class="math inline">\(t\)</span> temos:</p>
+<p><span class="math display">\[
+P(t&lt;t_1)=0,01/2 \Rightarrow t_1=-4,604
+\\
+P(t&gt;t_2)=0,01/2 \Rightarrow t_2=4,604
+\]</span></p>
+<p>A média amostral é igual a 13,9, enquanto que a variância foi igual a 0,67. Logo, o <span class="math inline">\(t\)</span> calculado é dado por:</p>
+<p><span class="math display">\[
+t_c=\frac{\bar{X}-12}{S/\sqrt{5}}=\frac{13,9-12}{0,82/\sqrt{5}}=5,18
+\]</span></p>
+<p>Como o valor calculado pertence à região crítica, rejeitamos a hipótese nula.</p>
+<hr />
+<p>Críticas e sugestões a este material sempre serão bem vindas.</p>
+<p>Para entrar em contato comigo, envie uma mensagem para <a href="mailto:lineuacf@gmail.com" class="email">lineuacf@gmail.com</a>.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

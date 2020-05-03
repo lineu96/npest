@@ -1,0 +1,408 @@
+---
+output:
+  html_document:                    # Classe de documento.
+    toc: true                       # Exibir sum?rio.
+    toc_depth: 2                    # Profundidade do sum?rio.
+    toc_float:                      # Sum?rio flutuante na borda.
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           # Se??es numeradas.
+    theme: flatly
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                 # Caminho para arquivo CSS.
+    fig_width: 7                    # Lagura das figuras.
+    fig_height: 6                   # Altura das figuras.
+    fig_caption: true               # Exibica??o de legenda.
+    fig_align: 'center'
+#    code_folding: hide              # Esconder/exibir bloco de c?digo.
+#    keep_md: true                   # Manter o arquivo md.
+    #template: quarterly_report.html # Caminho para o template.  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+---
+
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+
+---
+
+<font size="8"> 
+<p align=”center”> <b> Noções de Probabilidade e Estatística </b> </center>
+</font> 
+
+<font size="5"> 
+<p align=”center”> <b> Parte 4 - Variáveis aleatórias discretas </b> </center>
+</font>
+
+<font size="4"> 
+<p align=”center”> [Lineu Alberto Cavazani de Freitas](https://lineu96.github.io/st/) </center>
+</font> 
+
+---
+
+# **Variáveis aleatórias discretas**
+
+Uma variável aleatória é classificada como discreta se assume um conjunto de valores enumerável. Dessa forma, é possível atribuir probabilidades para um ponto específico.
+
+# **Função de probabilidade**
+
+Seja uma variável aleatória (v.a) discreta $X$, que assume os valores $x_{1}, x_{2}, ... , x_{n}, ...$. Sua função de probabilidade (fp) é a função que atribui probabilidades a cada $x_{i}$ em que:
+
+ - $0 \leq  P(x_{i}) \leq 1$, $i = 1, 2, ...$
+ 
+ - $\sum_{i} P(x_{i}) = 1$
+ 
+As possíveis notações são:
+
+ - $P(X=x_i)=p(x_i)=p_i, \ i=1,2,...$
+ - 
+<table style="border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto" class="tg"><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">X</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">x1</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">x2</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">x3</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#fff;text-align:left;vertical-align:top">...</td></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">pi</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">p1</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">p2</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">p3</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:inherit;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">...</td></tr></table>
+
+As variáveis aleatórias são completamente caracterizadas pela sua função de probabilidade e é importante obter a função que melhor represente o comportamento da variável na população.
+
+Considere o experimento de lançar uma moeda duas vezes consecutivas e observar obervar o resultado, temos interesse em verificar o número de caras, chamaremos de variável aleatória N. O espaço amostral é dado pelas combinações: 
+
+  - se {cara;cara}, então 2 caras.
+  - se {cara;coroa}, então 1 cara.
+  - se {coroa;cara}, então 1 cara.
+  - se {coroa;coroa}, então 0 cara.
+  
+  
+Logo, a função de probabilidade para a variável aleatória N (número de caras em 2 lançamentos) é dada por:
+
+<table style="border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto" class="tg"><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:middle">N</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:middle">P(N=n)</td></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:middle">0</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:middle">1/4</td></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:top">1</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;text-align:left;vertical-align:top">1/2</td></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">2</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f9f9f9;text-align:left;vertical-align:top">1/4</td></tr></table>
+
+---
+
+# **Função de distribuição acumulada de probabilidade **
+
+Em certas situações pode ser útil calcularmos a probabilidade acumulada até um certo valor. A função de distribuição ou função acumulada de probablidade de uma v.a $X$ é dada por:
+
+$$F(x) = P(X \leq x)$$
+
+Considerando o exemplo em que a variável aleatória n representa o número de caras observadas em 2 lançamentos, a função acumulada de probailidade fica dada por: 
+
+$$F=
+\left\{\begin{matrix}
+0 & se \ n<0\\
+1/4 & se \ n=0\\ 
+3/4 & se \ n=1\\ 
+1 & se \ n \geq 2
+\end{matrix}\right.$$
+
+A função de distribuição acumulada também pode ser convenientemente representada através de um gráfico que tem forma de escada:
+
+```{r, echo=FALSE, message=FALSE, fig.height=5, fig.width=5, fig.align='center'}
+
+n <- data.frame(n = c(0,1,2), 
+                fac = c(1/4, ((1/4)+(1/2)), (1/4)+(1/2)+(1/4)))
+
+plot(n, xlim=c(-1,3), ylim=c(0,1), pch=19, 
+     main="Função de distribuição para o número de \n caras em 2 lançamentos de uma moeda",
+     xlab="nº de caras",
+     ylab="F(x)")
+
+axis(1, tck=1, col.ticks="light gray")
+axis(2, tck=1, col.ticks="light gray", lwd.ticks="1")
+
+lines(x = c(-2,0),
+      y = c(0,0),
+      col = 1)
+
+lines(x = c(0,1),
+      y = c(1/4,1/4),
+      col = 1)
+
+lines(x = c(1,2),
+      y = c(((1/4)+(1/2)),((1/4)+(1/2))),
+      col = 1)
+
+lines(x = c(2,4),
+      y = c(1,1),
+      col = 1)
+
+points(0,0)
+points(1,1/4)
+points(2,3/4)
+
+```
+
+---
+
+# **Medidas de posição para V.A's discretas** {.tabset .tabset-fade}
+
+Sabemos que a descrição completa do comportamento de uma variável aleatória discreta é feita através da sua função de probabilidade, desta forma presume-se que qualquer quantidade destinada a resumir os valores observados da variável devem envolver esta função.
+
+Para definição das medidas de posição central para variáveis aleatórias discretas, suponha que os possíveis valores da variável aleatória sejam representados por $x_1,x_2,...,x_k$ com correspondentes probabilidades $p_1,p_2,...,p_k$.
+
+---
+
+## **Média**
+
+Também chamada de valor esperado e esperança, representa o ponto de equilíbrio da distribuição dos valores da variável aelatória. A média para uma variável $X$ é dada por:
+
+$$E(X)=\sum_{i=1}^{k}x_ip_i$$
+
+Notações alternativas para $E(X)$ são: $\mu_X$ ou simplesmente $\mu$
+
+---
+
+## **Mediana**
+
+A mediana é o valor $Md$ que satisfaz às seguintes condições
+
+$$P(X \geq Md) \geq 1/2 \ e \ P(X \leq Md) \leq 1/2$$
+
+---
+
+## **Moda**
+
+A moda ($Mo$) é o valor (ou valores) da variável com maior probabilidade de ocorrência
+
+$$Mo = max(p_1,p_2,...,p_k)$$
+
+---
+
+# **Medidas de dispersão para V.A's**
+
+Para variáveis aleatórias, a medida de dispersão mais utilizada é a variância.
+
+Seja $X$ uma variável aleatória com $P(X_i=x_i)=p_i, \ i=1,2,...,k$ e média $\mu$. A variância de $X$ é a ponderação pelas respectivas probabilidades, dos desvios relativos à média, elevados ao quadrado, isto é 
+
+$$Var(X)=\sum_{i=1}^{k} (x_i-\mu)^2p_i$$
+
+Notações alternativas para $Var(X)$ são $\sigma^2$, ou ainda $\sigma_X^2$. Extraindo a raiz quadrada desta quantidade, obtém-se o desvio padrão ($Dp(X)$, $\sigma$ ou $\sigma_X$).
+
+A variância definida anteriormente pode ainda ser considerada como valor esperadode uma nova variável aleatória, o desvio ao quadrado. Isto é:
+
+$$Var(X)= E[(X-\mu)^2]$$
+
+ou ainda
+
+$$Var(X)= E(X^2)-\mu^2= \sum_{i=1}^{k} p_i x_i^2-\mu^2.$$
+
+---
+
+# **Principais modelos discretos** {.tabset .tabset-fade}
+
+Algumas variáveis aleatórias aparecem com bastante frequência em situações práticas. Nesses casos, a função de probabilidade pode ser escrita de maneira mais compacta, isto é, existe uma lei para atribuir as probabilidades.
+
+As mais famosas e conhecidas funções discretas de probabilidade são:
+
+ - **Uniforme**
+ - **Bernoulli**
+ - **Binomial**
+ - **Geométrico**
+ - **Poisson**
+ - **Hipergeométrico**
+
+---
+
+## **Uniforme**
+
+
+Seja $X$ uma variável aleatória que assume os valores $1,2,...,k$. Dizemos que $X$ segue o modelo Uniforme Discreto se atribui a mesma probabilidade ($1/k$) a cada um dessses $k$ valores. A função de probabilidade é dada por:
+
+$$P(X=j) = \frac{1}{k}, \ j=1,2,...,k.$$
+
+Para indicar que a variável aleatória X segue o modelo Uniforme Discreto usa-se a notação $X \sim U_D[1,k]$. Além disso, $E(X) = \frac{1+k}{2}$ e $Var(X) = \frac{k^2 - 1}{12}$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+
+# Uniforme
+par(mfrow = c(1,2))
+
+x = 0:5
+pdf = dunif(x, min = 0, max = 5)
+plot(x, pdf, type="h", lwd=3, col=1, 
+     main="", ylim = c(0,0.25), 
+     xlab = 'j', ylab = 'P[X=j]')
+
+pac = punif(x, min = 0, max = 5)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0,1), 
+     xlab = 'j', ylab = 'F(j)')
+
+mtext("Uniforme (k=5)", side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+## **Bernoulli**
+
+Dizemos que a variável $X$ segue o modelo de Bernoulli se atribui 0 ou 1 à ocorrência de fracasso ou sucesso. Seja $p$ a probabilidade de sucesso, $0 \leq p \leq 1$, a função de probabilidade é dada por:
+
+$$P(X=x) = p^x(1-p)^{1-x}, \ x=0,1.$$
+
+Para indicar que a variável aleatória X segue o modelo Bernoulli usa-se a notação $X \sim b(p)$. Além disso, $E(X) = p$ e $Var(X) = p(1-p)$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+# Bernoulli
+
+par(mfrow = c(1,2))
+
+x = 0:1
+pdf = dbinom(x, size = 1, p=0.4)
+plot(x, pdf, type="h", lwd=3, col=1, 
+     main="", ylim = c(0,0.7), 
+     xlab = 'x', ylab = 'P[X=x]')
+
+pac = pbinom(x, size = 1, p=0.4)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0.6,1), 
+     xlab = 'x', ylab = 'F(x)')
+
+mtext("Bernoulli (p=0.4)", side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+## **Binomial**
+
+A repetição de ensaios de Bernoulli independentes dá origem à um importante modelo discreto: o modelo Binomial. Sendo assim cosidere a repetição de $n$ ensaios de Bernoulli independentes e todos com a mesma probabilidade de sucesso $p$. A variável que conta o número de sucessos é denominada Binomial com parâmetros $n$ e $p$ e sua função de probabilidade é dada por:
+
+$$P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}, \ k=0,1,2,...,n.$$
+
+Além disso, $E(X) = np$ e $Var(X) = np(1-p)$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+# Binomial
+
+par(mfrow = c(1,2))
+
+x = 0:10
+pdf = dbinom(x, size = 10, p=0.5)
+plot(x, pdf, type="h", lwd=3, col=1, 
+     main="", ylim = c(0,0.3),
+     xlab = 'k', ylab = 'P[X=k]')
+
+pac = pbinom(x, size = 10, p=0.5)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0,1), 
+     xlab = 'k', ylab = 'F(k)')
+
+mtext("Binomial (n=10, p=0.5)", side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+## **Geométrico**
+
+Dizemos que uma variável aleatória $X$ tem distribuição Geométrica de parâmetro $p$, se sua função de probabilidade tem a forma:
+
+$$P(X=k) = p(1-p)^k, \ 0 \leq p \leq 1 \ e \ k=0,1,2,... $$
+
+Usa-se a notação $X \sim G(p)$. Interpretando $p$ como a probabilidade de sucesso, a distribuição Geométrica pode ser pensada como o número de ensaios de Bernoulli que precedem o primeiro sucesso. Além disso, $E(X) = \frac{1-p}{p}$ e $Var(X) = \frac{1-p}{p^2}$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+# Geométrico
+
+par(mfrow = c(1,2))
+
+x = 0:20
+pdf = dgeom(x, prob = 0.1)
+plot(x, pdf, type="h", lwd=3, col=1, 
+     main="", ylim = c(0,0.1),
+     xlab = 'k', ylab = 'P[X=k]')
+
+pac = pgeom(x, prob = 0.1)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0,1), 
+     xlab = 'k', ylab = 'F(k)')
+
+mtext("Geométrico (p=0.1)", side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+## **Poisson**
+
+Uma variável aleatória $X$ tem distribuição de Poisson com parâmetro $\lambda>0$, se sua função de probabilidade é dada por:
+
+$$P(X=k) = \frac{e^{-\lambda} \lambda^k}{k!}, \ k = 0,1,2,...$$
+
+O parâmetro $\lambda$ usualmente refere-se à taxa de ocorrência, isto é, a frequência média ou esperada num determinado intervalo. Usa-se a notação $X \sim Po(\lambda)$. Além disso, $E(X) = Var(X) = \lambda$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+# Poisson
+
+par(mfrow = c(1,2))
+
+x = 0:10
+pdf = dpois(x, 5)
+plot(x, pdf, type="h", lwd=3, col=1, xlab = 'k', ylab = 'P[X=k]',
+     main = "")
+
+pac = ppois(x, 5)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0,1), 
+     xlab = 'k', ylab = 'F(k)')
+
+mtext(expression(paste("Poisson (", lambda, "=5)")), side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+## **Hipergeométrico**
+
+Considere um conjunto de $n$ objetos dos quais $m$ são do tipo I e $n-m$ são do tipo II. Para um sorteio de $r$ objetos $(r<n)$, feito ao acaso e sem reposição. Defina $X$ como o número de objetos do tipo I selecionados. Diremos que a variável aleatória X segue o modelo Hipergeométrico e sua função de probabilidade é dada pela expressão:
+
+$$P(X=k) = \frac{\binom{m}{k} \binom{n-m}{r-k}}{\binom{n}{r}}, k=max(0,r-(n-m)),...,min(r,m)$$
+
+Além disso, $E(X) = \frac{rm}{n}$ e $Var(X) = \frac{rm(n-m)(n-r)}{n^2(n-1)}$.
+
+---
+
+```{r, echo=FALSE, message=FALSE, fig.height=4, fig.width=7, fig.align='center'}
+
+# Hipergeométrica
+
+par(mfrow = c(1,2))
+
+x = 0:10
+pdf = dhyper(x,m=15,n=15,k=5)
+plot(x, pdf, type="h", lwd=3, col=1, xlab = 'k', ylab = 'P[X=k]',
+     main = "", ylim = c(0,0.4))
+
+pac = phyper(x,m=15,n=15,k=5)
+plot(x, pac, type="S", lwd=3, col=1, 
+     main="", ylim = c(0,1), 
+     xlab = 'k', ylab = 'F(k)')
+
+mtext("Hipergeométrica (m=15,n=15,k=5)", side = 3, line = -2, outer = TRUE, cex = 1.5)
+
+```
+
+---
+
+Críticas e sugestões a este material sempre serão bem vindas.
+
+Para entrar em contato comigo, envie uma mensagem para <lineuacf@gmail.com>.
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

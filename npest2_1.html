@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>npest2_1.utf8.md</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.13/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="npest1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Introdução à análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest3.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidades
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest4.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest5.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="npest7.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+<hr />
+<font size="8">
+<p align=”center”>
+<b> Noções de Probabilidade e Estatística </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Parte 2.1 - Introdução à análise exploratória de dados </b>
+</center>
+<p></font></p>
+<font size="5">
+<p align=”center”>
+<b> Tabelas de frequência e medidas resumo </b>
+</center>
+<p></font></p>
+<font size="4">
+<p align=”center”>
+<a href="https://lineu96.github.io/st/">Lineu Alberto Cavazani de Freitas</a>
+</center>
+<p></font></p>
+<hr />
+<div id="analise-exploratoria" class="section level1">
+<h1><span class="header-section-number">1</span> <strong>Análise exploratória</strong></h1>
+<p>Parte primordial de qualquer análise estatística é chamada <strong>análise descritiva ou exploratória</strong>. Tal etapa consiste basicamente de resumos numéricos e análises gráficas das variáveis disponíveis em um conjunto de dados. Trata-se de uma etapa de extrema importância e deve preceder qualquer análise mais sofisticada.</p>
+<p>Neste material serão apresentados os principais conceitos a respeito de análise exploratória. Na primeira parte será discutido o uso de tabelas de frequência para representação de dados de diferentes naturezas (tabelas de frequência simples, com faixas de valores, conjuntas) e medidas resumo (de posição e dispersão). Na segunda parte, medidas de associação, gráficos e ainda uma breve apresentação do conceito de assimetria.</p>
+<hr />
+</div>
+<div id="tabelas-de-frequencia" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>Tabelas de frequência</strong></h1>
+<p>Utlizando apenas os dados brutos é difícil responder questões de interesse. Para reduzir os dados originais de forma que fique mais claro o entendimento dos mesmos são utilizadas as tabelas de frequência.</p>
+<p>No caso de variáveis qualitativas ou quantitativas discretas ela consiste em listar os possíveis valores da variável e fazer a contagem de quantas vezes cada categoria ou valor aparece nos dados brutos. Para variáveis quantitativas contínuas, ou mesmo discretas com grande amplitude, uma alternativa é montar a tabela de frequências utilizando <strong>faixas de valores</strong>. Já para avaliar o as frequências de duas variáveis simultaneamente, as tabelas de dupla entrada são uma alternativa.</p>
+<hr />
+<p>Os tipos comuns de frequência são:</p>
+<ul>
+<li>Frequência <strong>absoluta</strong>: contagem simples do número de vezes que a categoria ou valor é visto nos dados brutos, usualmente denominado de <span class="math inline">\(n_i\)</span>.</li>
+<li>Frequência <strong>relativa</strong>: é a frequência absoluta dividida pelo total, isto é, <span class="math inline">\(f_i = \frac{n_i}{n}\)</span>.</li>
+<li>Frequência <strong>acumulada</strong>: soma das frequências relativas, usualmente denotadas por <span class="math inline">\(f_{ac}\)</span>.</li>
+</ul>
+<hr />
+<p>Considerando os dados brutos apresentados na <strong>Parte 1</strong> desta série de materiais, em que um questionário foi aplicado aos alunos do primeiro ano de uma escola (disponível <a href="https://www.ime.usp.br/~noproest/dados/questionario.txt">aqui</a>) e as seguintes informações foram coletadas para cada indivíduo:</p>
+<ul>
+<li><strong>Id</strong>: identificação do aluno.</li>
+<li><strong>Turma</strong>: turma a que o aluno foi alocado (A ou B).</li>
+<li><strong>Sexo</strong>: F se feminino, M se masculino.</li>
+<li><strong>Idade</strong>: idade em anos.</li>
+<li><strong>Alt</strong>: altura em metros.</li>
+<li><strong>Peso</strong>: peso em quilogramas.</li>
+<li><strong>Filhos</strong>: número de filhos na família.</li>
+<li><strong>Fuma</strong>: hábito de fumar, sim ou não.</li>
+<li><strong>Toler</strong>: tolerância ao cigarro: (I) indiferente; (P) incomoda pouco; (M) incomoda muito.</li>
+<li><strong>Exerc</strong>: horas de atividade física, por semana.</li>
+<li><strong>Cine</strong>: número de vezes que vai ao cinema por semana.</li>
+<li><strong>OpCine</strong>: opinião a respeito das salas de cinema na cidade: (B) regular a boa; (M) muito boa.</li>
+<li><strong>TV</strong>: horas gastas assistindo TV, por semana.</li>
+<li><strong>OpTV</strong>: opinião a respeito da qualidade da programação na TV: (R) ruim; (M) média; (B) boa; (N) não sabe.</li>
+</ul>
+<p>Exemplos de tabelas de frequência simples para estes dados são:</p>
+<hr />
+<div align="center">
+<p><strong>Tabela de frequências para a variável gênero (uma variável qualitativa nominal)</strong></p>
+<div id="htmlwidget-a968758523fb2a2031e9" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a968758523fb2a2031e9">{"x":{"filter":"none","data":[["F","M","Total"],["37","13","50"],["0.74","0.26","1"],["0.74","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Gênero<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<p><strong>Tabela de frequências para a variável idade (uma variável quantitativa discreta)</strong></p>
+<div id="htmlwidget-77ddaa20ba1d36c3d4be" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-77ddaa20ba1d36c3d4be">{"x":{"filter":"none","data":[["17","18","19","20","21","23","24","25","Total"],["9","22","7","4","3","2","1","2","50"],["0.18","0.44","0.14","0.08","0.06","0.04","0.02","0.04","1"],["0.18","0.62","0.76","0.84","0.9","0.94","0.96","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Idade<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<hr />
+<p>Na prática podemos estar interessados em resumir informações a respeito de uma variável quantitativa discreta que apresente muitos possíveis valores ou ainda uma variável quantitativa contínua, o que significa que é praticamente inviável gerar uma tabela com o valor e número de ocorrências.</p>
+<p>Nestas situações uma alternativa consiste na construção de faixas de valores para que seja possível obter um número de classes menor e desta forma seja possível a construção de uma tabela de frequências mais enxuta. Existem técnicas para se calcular o número ideal de faixas, contudo esta quantidade pode ser arbitrária. Em geral recomenda-se utilizar de 5 a 8 faixas de mesma amplitude tendo em vista que um número excessivo de faixas torna a leitura complicada e faixas desiguais podem levar a interpretações equivocadas.</p>
+<hr />
+<p>Exemplos de tabelas de frequência utilizando faixas de valores:</p>
+<div align="center">
+<p><strong>Tabela de frequências para a variável peso (uma variável quantitativa contínua)</strong></p>
+<div id="htmlwidget-ed953cbb7cadd901257b" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed953cbb7cadd901257b">{"x":{"filter":"none","data":[["[40, 50)","[50, 60)","[60, 70)","[70, 80)","[80, 90)","[90, 100)","Total"],["8","22","8","6","5","1","50"],["0.16","0.44","0.16","0.12","0.1","0.02","1"],["0.16","0.6","0.76","0.88","0.98","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Peso<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<p><strong>Tabela de frequências para a variável TV (uma variável quantitativa contínua)</strong></p>
+<div id="htmlwidget-d7842448be5636b9cbe1" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7842448be5636b9cbe1">{"x":{"filter":"none","data":[["[0, 6)","[6, 12)","[12, 18)","[18, 24)","[24, 36)","Total"],["14","17","11","4","4","50"],["0.28","0.34","0.22","0.08","0.08","1"],["0.28","0.62","0.84","0.92","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>TV<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<hr />
+<p>Quando estamos interessados em avaliar o comportamento de 2 variáveis podemos construir tabelas de <strong>frequência conjunta</strong>.</p>
+<p>Considere uma amostra de 20 alunos em que perguntou-se se eles trabalhavam e qual o número de vestibulares prestados.</p>
+<p><span class="math inline">\(X\)</span>: aluno trabalha (sim ou não)</p>
+<p><span class="math inline">\(Y\)</span>: nº de vestibulares prestados</p>
+<p>Os dados obtidos foram:</p>
+<div id="htmlwidget-b4b678e719f46e05062c" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b4b678e719f46e05062c">{"x":{"filter":"none","data":[["X","Y"],["não","1"],["sim","1"],["não","2"],["não","1"],["não","1"],["sim","2"],["sim","3"],["não","1"],["sim","1"],["sim","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<div id="htmlwidget-d03a9158f12bcf23c2cf" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d03a9158f12bcf23c2cf">{"x":{"filter":"none","data":[["X","Y"],["não","2"],["não","2"],["sim","1"],["não","3"],["sim","2"],["não","2"],["não","2"],["não","1"],["sim","3"],["não","2"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<p>Note que a variável <span class="math inline">\(X\)</span> é qualitativa nominal com dois níveis: sim ou não. Enquanto <span class="math inline">\(Y\)</span> é uma variável quantitativa discreta. A <strong>tabela de frequência conjunta</strong> de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tem a seguinte forma:</p>
+<div align="center">
+<div id="htmlwidget-2b817b30d8fa0bc00599" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2b817b30d8fa0bc00599">{"x":{"filter":"none","data":[["(sim,1)","(sim,2)","(sim,3)","(não,1)","(não,2)","(não,3)","Total"],[4,2,2,5,6,1,20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>(X,Y)<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<p><span class="math inline">\(\\\)</span></p>
+<p>Um modo mais conveniente de se representar estas informações é através de uma <strong>tabela de dupla entrada</strong>:</p>
+<div align="center">
+<div id="htmlwidget-4aaa281deb52f1e72794" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4aaa281deb52f1e72794">{"x":{"filter":"none","data":[["sim","não","Total"],[4,5,9],[2,6,8],[2,1,3],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X/Y<\/th>\n      <th>1<\/th>\n      <th>2<\/th>\n      <th>3<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<p><span class="math inline">\(\\\)</span></p>
+<p>A última linha e a última coluna contêm os totais de ocorrências de cada variável, sendo possível assim obter a tabela de frequência individual para cada variável. Uma tabela individual obtida pela de dupla entrada é chamada <strong>tabela marginal de frequência</strong>, ou simplesmente <strong>marginal</strong>. No caso em questão, as marginais são dadas por:</p>
+<div align="center">
+
+</div>
+<div align="center">
+
+</div>
+<div align="center">
+<table>
+<tr>
+<td>
+<div id="htmlwidget-def5df116a1fbb1eca43" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-def5df116a1fbb1eca43">{"x":{"filter":"none","caption":"<caption>Marginal X<\/caption>","data":[["sim","não","Total"],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</td>
+<td>
+                         
+</td>
+<td>
+<div id="htmlwidget-f2478127d1b481810544" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f2478127d1b481810544">{"x":{"filter":"none","caption":"<caption>Marginal Y<\/caption>","data":[["1","2","3","Total"],["9","8","3","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Y<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</td>
+</tr>
+</table>
+</div>
+<p>Variáveis de qualquer natureza podem ter seu comportamento conjunto representado através de tabelas de frequência.</p>
+<hr />
+</div>
+<div id="medidas-resumo" class="section level1">
+<h1><span class="header-section-number">3</span> <strong>Medidas resumo</strong></h1>
+<p>As medidas resumo buscam sumarizar a informação disponível sobre o comportamento de uma variável através de representações numéricas. Existem medidas de <strong>posição</strong> e de <strong>dispersão</strong>.</p>
+<hr />
+<div id="medidas-de-posicao" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">3.1</span> <strong>Medidas de posição</strong></h2>
+<p>As medidas de posição ou tendência central são medidas resumo obtidas a partir de uma série de valores com o objetivo de mostrar em que valor se concentram os dados observados. Dentre estas medidas destacam-se: a <strong>média</strong>, <strong>mediana</strong> e <strong>moda</strong> dos dados.</p>
+<hr />
+<div id="media" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> <strong>Média</strong></h3>
+<p>Considere uma variável <span class="math inline">\(X\)</span> com observações representadas por <span class="math inline">\(x_1,x_2,...x_n\)</span>. A média (<span class="math inline">\(\bar{x}\)</span>) é dada pela soma dos valores dividida pelo número de elementos. Isto é:</p>
+<p><span class="math display">\[\bar{x} =  \frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
+<p>Ou ainda, pode-se obter a média para um conjunto de dados organizado numa tabela de frequências da seguinte forma:</p>
+<p><span class="math display">\[\bar{x} = \sum_{i=1}^{n} \frac{n_i}{n}x_i\]</span></p>
+<hr />
+</div>
+<div id="quartis-e-mediana" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> <strong>Quartis e Mediana</strong></h3>
+<p>Para cáclulo de quartis(<span class="math inline">\(Q_i\)</span>) e mediana (<span class="math inline">\(md\)</span>) a partir da tabela de dados brutos precisamos ordenar as observações para selecionar os valores que dividem os dados nas proporções desejadas.</p>
+<p>Se o número de observações for par, a mediana será o ponto médio dos dois valores centrais, se for ímpar, a mediana será o valor que ocupa a posição central dos dados ordenados. A mediana divide o conjunto de dados ao meio, ou seja, 50% dos valores estão acima e 50% estão abaixo.</p>
+<p>Para obter os quartis basta repetir o procedimento com os dois subconjuntos gerados na obtenção da mediana. Assim obtém-se 3 valores: o primeiro quartil (<span class="math inline">\(Q_1\)</span>) que marca onde estão 25% dos dados, o segundo quartil (<span class="math inline">\(Q_2\)</span> ou <span class="math inline">\(md\)</span>) que marca onde estão 50% dos dados e o terceiro quartil (<span class="math inline">\(Q_3\)</span>) que marca 75% dos dados.</p>
+<hr />
+</div>
+<div id="moda" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> <strong>Moda</strong></h3>
+<p>A moda (<span class="math inline">\(Mo\)</span>) é o valor mais frequente, isto é, aquele com maior probabilidade de ocorrência.</p>
+<hr />
+</div>
+<div id="comentario" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> Comentário</h3>
+<p>Na prática, estas medidas possuem vantagens e desvantagens. Caso haja valores discrepantes a média é uma medida altamente influenciada, o que não acontece com a moda e a mediana. Já a mediana é difícil de ser obtida quando existem muitos dados, dado que o processo de ordenação é custoso. Já a dificuldade com a moda surge quando trabalha-se com distribuições multimodais, isto é diversos valores tem a mesma frequência de ocorrência.</p>
+<hr />
+</div>
+</div>
+<div id="medidas-de-dispersao" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">3.2</span> <strong>Medidas de dispersão</strong></h2>
+<p>As medidas de posição por si só não são de grande valia para tirarmos conclusões preliminares a respeito de um conjunto de dados. Há a necessidade de aliar as medidas de posição a quantidades que mensurem a variabilidade. Desta forma precisamos obter uma medida de posição, que nos dá uma ideia de centro dos dados; e uma medida de dispersão, que nos dá uma noção de quão dispersos são os dados.</p>
+<p>Lembre-se que conjuntos de dados com diferentes valores podem gerar as mesmas medidas de posição, contudo um pode ser mais disperso que o outro. Tome como exemplo a média entre 5 valores:</p>
+<ol style="list-style-type: decimal">
+<li>Se os valores obervados foram {5,5,5,5,5}, a média é 5.</li>
+<li>Se os valores obervados foram {5,0,10,1,9}, a média é 5.</li>
+<li>Se os valores obervados foram {7,3,3,8,4}, a média é 5.</li>
+<li>Se os valores obervados foram {0,1,1,5,18}, a média é 5.</li>
+</ol>
+<p>Note como o comportamento interno dos dados varia mas a medida de posição central coincide. Note também como no primeiro caso os 5 valores são idênticos, ou seja, não há dispersão. No entanto note como no quarto caso os valores estão entre 0 e 18, portanto há uma grande dispersão nestes dados. As medidas de dispersão mais utilizadas são: <strong>Amplitude</strong>, <strong>Desvio</strong>, <strong>Variância</strong>, <strong>Desvio Padrão</strong>, <strong>Coeficiente de Variação</strong>.</p>
+<hr />
+<div id="amplitude" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> <strong>Amplitude</strong></h3>
+<p>A amplitude referente a uma certa variável, é definida como a diferença entre o maior e o menor valor.</p>
+<p><span class="math display">\[\Delta = max-min\]</span></p>
+<p>Muitas vezes esta medida não é conveniente pois só leva em conta dois valores de todo o conjunto.</p>
+<hr />
+</div>
+<div id="desvio" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> <strong>Desvio</strong></h3>
+<p>A ideia é considerar o desvio de cada observação a um valor de referência e então tomar a média destes desvios. Como valor de referência, destaca-se o uso da média, no entanto outras medidas podem ser usadas, como a mediana.</p>
+<p><span class="math display">\[desvio \ médio = \frac{\sum_{i=1}^{n} |x_i-\bar{x}|}{n}  \]</span></p>
+<hr />
+</div>
+<div id="variancia" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> <strong>Variância</strong></h3>
+<p>No cálculo da variância de um conjunto de dados, ao invés de usar os desvios, utiliza-se a soma dos quadrados dos desvios.</p>
+<p><span class="math display">\[var = \frac{\sum_{i=1}^{n} (x_i-\bar{x})^2}{n}  \]</span></p>
+<p>ou ainda</p>
+<p><span class="math display">\[var = \frac{\sum_{i=1}^{n} (x_i^2-\bar{x}^2)}{n}\]</span></p>
+<p>Note que por utilizar a soma dos desvios ao quadrado, esta medida não fica numa unidade conveniente.</p>
+<hr />
+</div>
+<div id="desvio-padrao" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> <strong>Desvio Padrão</strong></h3>
+<p>Para manter a mesma unidade dos dados originais, é conveniente utilizar o desvio padrão, trata-se da raiz quadrada da variância.</p>
+<p><span class="math display">\[dp=\sqrt{var}\]</span></p>
+<hr />
+</div>
+<div id="coeficiente-de-variacao" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> <strong>Coeficiente de Variação</strong></h3>
+<p>O coeficiente de variação é dado por</p>
+<p><span class="math display">\[cv = \frac{dp}{\bar{x}}\]</span> Note que como a média está no denominador, ela não pode ser 0. Além disso esta medida é adimensional e, em geral, é apresentada em forma de porcentagem.</p>
+<hr />
+<p>Críticas e sugestões a este material sempre serão bem vindas.</p>
+<p>Para entrar em contato comigo, envie uma mensagem para <a href="mailto:lineuacf@gmail.com" class="email">lineuacf@gmail.com</a>.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

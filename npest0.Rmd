@@ -1,0 +1,96 @@
+---
+output:
+  html_document:                    # Classe de documento.
+    toc: true                       # Exibir sum?rio.
+    toc_depth: 2                    # Profundidade do sum?rio.
+    toc_float:                      # Sum?rio flutuante na borda.
+      collapsed: true
+      smooth_scroll: true
+    number_sections: false           # Se??es numeradas.
+    theme: flatly
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                 # Caminho para arquivo CSS.
+    fig_width: 7                    # Lagura das figuras.
+    fig_height: 6                   # Altura das figuras.
+    fig_caption: true               # Exibica??o de legenda.
+    fig_align: 'center'
+#    code_folding: hide              # Esconder/exibir bloco de c?digo.
+#    keep_md: true                   # Manter o arquivo md.
+    #template: quarterly_report.html # Caminho para o template.  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+---
+
+<center>
+<img src="img/logo6.png" width=200 height=200>
+</center>
+
+---
+
+<font size="8"> 
+<p align=”center”> <b> Noções de Probabilidade e Estatística </b> </center>
+</font>
+
+<font size="4"> 
+<p align=”center”> [Lineu Alberto Cavazani de Freitas](https://lineu96.github.io/st/) </center>
+</font> 
+
+---
+
+# **Apresentação**
+
+---
+
+Uma versão preliminar deste material surgiu na minha época de graduação em Estatística na UFPR quando fui indicado por colegas para dar aulas particulares de Estatística Básica para alunos de outros cursos. Na versão inicial era uma material bem amplo e genérico que, após conseguir tempo, fiz questão de melhorá-lo.
+
+Todo o texto foi extremamente baseado no livro [Noções de Probabilidade e Estatística](https://www.ime.usp.br/~noproest/doku.php), dos autores [Marcos Nascimento Magalhães](https://www.ime.usp.br/~marcos/) e [Antonio Carlos Pedroso de Lima](https://www.ime.usp.br/~acarlos/doku.php). Muitos trechos foram, inclusive, copiados na íntegra dada a clareza como o conceito foi exposto no livro. 
+
+---
+
+<center>
+<img src="img/capa.jpg" width=250 height=250>
+</center>
+
+---
+
+Apesar de ser um livro altamente didático, para a produção deste material eu fiz algumas alterações na ordenação de como alguns tópicos foram apresentados e alguns assuntos sequer são mencionados. 
+
+O material está dividido em 9 partes:
+
+ - **[Parte 1](link.com)**: Conceitos Iniciais.
+ - **[Parte 2.1](link.com)**: Introdução à análise exploratória de dados: tabelas de frequência.
+ - **[Parte 2.2](link.com)**: Introdução à análise exploratória de dados: medidas resumo e análise gráfica.
+ - **[Parte 3](link.com)**: Probabilidades.
+ - **[Parte 4](link.com)**: Variáveis aleatórias discretas.
+ - **[Parte 5](link.com)**: Variáveis aleatórias contínuas.
+ - **[Parte 6.1](link.com)**: Inferência: conceitos iniciais e estimadores pontuais.
+ - **[Parte 6.2](link.com)**: Inferência: estimação por intervalo e testes de hipótese.
+ - **[Parte 7](link.com)**: Tópicos interessantes não abordados.
+ 
+---
+
+Uma ênfase maior foi dada da Parte 1 até a Parte 2.2. Se tratam de conceitos básicos e técnicas simples porém suficientes para extração de informações importantes quando a tarefa é analisar um conjunto de dados.
+
+Por ser um material voltado para aprendizado de Estatística, indicado para aqueles que estão dando seus primeiros passos nesta área, não foram apresentados muitos aspectos teóricos. E, para sintetizar o texto, poucos exemplos foram apresentados. 
+
+---
+
+Lembre-se, o que está aqui nem de perto é tudo o que a Estatística tem a oferecer. Existe uma infinidade de técnicas e métodos para os mais diversos fins.
+
+---
+
+Críticas e sugestões a este material sempre serão bem vindas.
+
+Para entrar em contato comigo, envie uma mensagem para <lineuacf@gmail.com>.
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
