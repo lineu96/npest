@@ -78,6 +78,8 @@ output:
     theme: flatly
     # cerulean 
     highlight: textmate
+    includes:
+      before_body: header.html
     #include:
     #  after_body: footer.html
     #css: styles.css

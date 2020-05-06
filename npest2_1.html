@@ -444,6 +444,38 @@ div.tocify {
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+<style type="text/css">
+table.header {
+    margin-top: 10px;
+    border-collapse: unset;
+}
+table.header > tbody {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+</style>
+
+<table class="header" width="100%" align="center">
+  <tr>
+    <td align="left" valign="bottom" width="90px">
+      <a href="link.com">
+        <img src="img/est.jpg" width="100%" />
+      </a>
+    </td>
+    <td align="left" valign="top">
+      <div class="header">
+        <h4 style="font-size: 20px; margin: 10px auto 0 10px">
+          Noções de Probabilidade e Estatística
+        </h4>
+        <h5 style="margin: 0px 0px 10px 10px">
+          <a href="https://lineu96.github.io/st/">
+            <code>Lineu Alberto</code>
+          </a>
+        </h5>
+      </div>
+    </td>
+  </tr>
+</table>
 
 <div class="fluid-row" id="header">
 
@@ -454,15 +486,6 @@ div.tocify {
 
 
 <hr />
-<center>
-<img src="img/logo6.png" width=200 height=200>
-</center>
-<hr />
-<font size="8">
-<p align=”center”>
-<b> Noções de Probabilidade e Estatística </b>
-</center>
-<p></font></p>
 <font size="5">
 <p align=”center”>
 <b> Parte 2.1 - Introdução à análise exploratória de dados </b>
@@ -471,11 +494,6 @@ div.tocify {
 <font size="5">
 <p align=”center”>
 <b> Tabelas de frequência e medidas resumo </b>
-</center>
-<p></font></p>
-<font size="4">
-<p align=”center”>
-<a href="https://lineu96.github.io/st/">Lineu Alberto Cavazani de Freitas</a>
 </center>
 <p></font></p>
 <hr />
@@ -518,12 +536,12 @@ div.tocify {
 <hr />
 <div align="center">
 <p><strong>Tabela de frequências para a variável gênero (uma variável qualitativa nominal)</strong></p>
-<div id="htmlwidget-a968758523fb2a2031e9" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a968758523fb2a2031e9">{"x":{"filter":"none","data":[["F","M","Total"],["37","13","50"],["0.74","0.26","1"],["0.74","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Gênero<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3596ea89ff37e61fdc64" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3596ea89ff37e61fdc64">{"x":{"filter":"none","data":[["F","M","Total"],["37","13","50"],["0.74","0.26","1"],["0.74","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Gênero<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <hr />
 <p><strong>Tabela de frequências para a variável idade (uma variável quantitativa discreta)</strong></p>
-<div id="htmlwidget-77ddaa20ba1d36c3d4be" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77ddaa20ba1d36c3d4be">{"x":{"filter":"none","data":[["17","18","19","20","21","23","24","25","Total"],["9","22","7","4","3","2","1","2","50"],["0.18","0.44","0.14","0.08","0.06","0.04","0.02","0.04","1"],["0.18","0.62","0.76","0.84","0.9","0.94","0.96","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Idade<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-30a0355c61c5b8f3c798" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-30a0355c61c5b8f3c798">{"x":{"filter":"none","data":[["17","18","19","20","21","23","24","25","Total"],["9","22","7","4","3","2","1","2","50"],["0.18","0.44","0.14","0.08","0.06","0.04","0.02","0.04","1"],["0.18","0.62","0.76","0.84","0.9","0.94","0.96","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Idade<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <hr />
 <p>Na prática podemos estar interessados em resumir informações a respeito de uma variável quantitativa discreta que apresente muitos possíveis valores ou ainda uma variável quantitativa contínua, o que significa que é praticamente inviável gerar uma tabela com o valor e número de ocorrências.</p>
@@ -532,12 +550,12 @@ div.tocify {
 <p>Exemplos de tabelas de frequência utilizando faixas de valores:</p>
 <div align="center">
 <p><strong>Tabela de frequências para a variável peso (uma variável quantitativa contínua)</strong></p>
-<div id="htmlwidget-ed953cbb7cadd901257b" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ed953cbb7cadd901257b">{"x":{"filter":"none","data":[["[40, 50)","[50, 60)","[60, 70)","[70, 80)","[80, 90)","[90, 100)","Total"],["8","22","8","6","5","1","50"],["0.16","0.44","0.16","0.12","0.1","0.02","1"],["0.16","0.6","0.76","0.88","0.98","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Peso<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5c03840f755c73f96bbd" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c03840f755c73f96bbd">{"x":{"filter":"none","data":[["[40, 50)","[50, 60)","[60, 70)","[70, 80)","[80, 90)","[90, 100)","Total"],["8","22","8","6","5","1","50"],["0.16","0.44","0.16","0.12","0.1","0.02","1"],["0.16","0.6","0.76","0.88","0.98","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Peso<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <hr />
 <p><strong>Tabela de frequências para a variável TV (uma variável quantitativa contínua)</strong></p>
-<div id="htmlwidget-d7842448be5636b9cbe1" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d7842448be5636b9cbe1">{"x":{"filter":"none","data":[["[0, 6)","[6, 12)","[12, 18)","[18, 24)","[24, 36)","Total"],["14","17","11","4","4","50"],["0.28","0.34","0.22","0.08","0.08","1"],["0.28","0.62","0.84","0.92","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>TV<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4488692778eb97e6a9df" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4488692778eb97e6a9df">{"x":{"filter":"none","data":[["[0, 6)","[6, 12)","[12, 18)","[18, 24)","[24, 36)","Total"],["14","17","11","4","4","50"],["0.28","0.34","0.22","0.08","0.08","1"],["0.28","0.62","0.84","0.92","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>TV<\/th>\n      <th>ni<\/th>\n      <th>fi<\/th>\n      <th>fac<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <hr />
 <p>Quando estamos interessados em avaliar o comportamento de 2 variáveis podemos construir tabelas de <strong>frequência conjunta</strong>.</p>
@@ -545,22 +563,22 @@ div.tocify {
 <p><span class="math inline">\(X\)</span>: aluno trabalha (sim ou não)</p>
 <p><span class="math inline">\(Y\)</span>: nº de vestibulares prestados</p>
 <p>Os dados obtidos foram:</p>
-<div id="htmlwidget-b4b678e719f46e05062c" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4b678e719f46e05062c">{"x":{"filter":"none","data":[["X","Y"],["não","1"],["sim","1"],["não","2"],["não","1"],["não","1"],["sim","2"],["sim","3"],["não","1"],["sim","1"],["sim","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9c07d35cf8ed6216327a" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9c07d35cf8ed6216327a">{"x":{"filter":"none","data":[["X","Y"],["não","1"],["sim","1"],["não","2"],["não","1"],["não","1"],["sim","2"],["sim","3"],["não","1"],["sim","1"],["sim","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <hr />
-<div id="htmlwidget-d03a9158f12bcf23c2cf" style="width:400px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d03a9158f12bcf23c2cf">{"x":{"filter":"none","data":[["X","Y"],["não","2"],["não","2"],["sim","1"],["não","3"],["sim","2"],["não","2"],["não","2"],["não","1"],["sim","3"],["não","2"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9433f99ece0629af6701" style="width:400px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9433f99ece0629af6701">{"x":{"filter":"none","data":[["X","Y"],["não","2"],["não","2"],["sim","1"],["não","3"],["sim","2"],["não","2"],["não","2"],["não","1"],["sim","3"],["não","2"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>V1<\/th>\n      <th>V2<\/th>\n      <th>V3<\/th>\n      <th>V4<\/th>\n      <th>V5<\/th>\n      <th>V6<\/th>\n      <th>V7<\/th>\n      <th>V8<\/th>\n      <th>V9<\/th>\n      <th>V10<\/th>\n      <th>V11<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <hr />
 <p>Note que a variável <span class="math inline">\(X\)</span> é qualitativa nominal com dois níveis: sim ou não. Enquanto <span class="math inline">\(Y\)</span> é uma variável quantitativa discreta. A <strong>tabela de frequência conjunta</strong> de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tem a seguinte forma:</p>
 <div align="center">
-<div id="htmlwidget-2b817b30d8fa0bc00599" style="width:200px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b817b30d8fa0bc00599">{"x":{"filter":"none","data":[["(sim,1)","(sim,2)","(sim,3)","(não,1)","(não,2)","(não,3)","Total"],[4,2,2,5,6,1,20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>(X,Y)<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dbd6758c8cd57d7fe87e" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dbd6758c8cd57d7fe87e">{"x":{"filter":"none","data":[["(sim,1)","(sim,2)","(sim,3)","(não,1)","(não,2)","(não,3)","Total"],[4,2,2,5,6,1,20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>(X,Y)<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p><span class="math inline">\(\\\)</span></p>
 <p>Um modo mais conveniente de se representar estas informações é através de uma <strong>tabela de dupla entrada</strong>:</p>
 <div align="center">
-<div id="htmlwidget-4aaa281deb52f1e72794" style="width:200px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4aaa281deb52f1e72794">{"x":{"filter":"none","data":[["sim","não","Total"],[4,5,9],[2,6,8],[2,1,3],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X/Y<\/th>\n      <th>1<\/th>\n      <th>2<\/th>\n      <th>3<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1282b72b8ce2a797dade" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1282b72b8ce2a797dade">{"x":{"filter":"none","data":[["sim","não","Total"],[4,5,9],[2,6,8],[2,1,3],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X/Y<\/th>\n      <th>1<\/th>\n      <th>2<\/th>\n      <th>3<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p><span class="math inline">\(\\\)</span></p>
 <p>A última linha e a última coluna contêm os totais de ocorrências de cada variável, sendo possível assim obter a tabela de frequência individual para cada variável. Uma tabela individual obtida pela de dupla entrada é chamada <strong>tabela marginal de frequência</strong>, ou simplesmente <strong>marginal</strong>. No caso em questão, as marginais são dadas por:</p>
@@ -574,15 +592,15 @@ div.tocify {
 <table>
 <tr>
 <td>
-<div id="htmlwidget-def5df116a1fbb1eca43" style="width:200px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-def5df116a1fbb1eca43">{"x":{"filter":"none","caption":"<caption>Marginal X<\/caption>","data":[["sim","não","Total"],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-343c21b039e165dd91b7" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-343c21b039e165dd91b7">{"x":{"filter":"none","caption":"<caption>Marginal X<\/caption>","data":[["sim","não","Total"],["8","12","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>X<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </td>
 <td>
                          
 </td>
 <td>
-<div id="htmlwidget-f2478127d1b481810544" style="width:200px;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f2478127d1b481810544">{"x":{"filter":"none","caption":"<caption>Marginal Y<\/caption>","data":[["1","2","3","Total"],["9","8","3","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Y<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d2ab77ec7c6b70a701de" style="width:200px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2ab77ec7c6b70a701de">{"x":{"filter":"none","caption":"<caption>Marginal Y<\/caption>","data":[["1","2","3","Total"],["9","8","3","20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Y<\/th>\n      <th>Frequência<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>

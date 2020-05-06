@@ -29,16 +29,6 @@ knitr::opts_chunk$set(echo = TRUE, cache = F)
 
 ---
 
-<center>
-<img src="img/logo6.png" width=200 height=200>
-</center>
-
----
-
-<font size="8"> 
-<p align=”center”> <b> Noções de Probabilidade e Estatística </b> </center>
-</font> 
-
 <font size="5"> 
 <p align=”center”> <b> Parte 2.1 - Introdução à análise exploratória de dados </b> </center>
 </font>
@@ -46,10 +36,6 @@ knitr::opts_chunk$set(echo = TRUE, cache = F)
 <font size="5"> 
 <p align=”center”> <b> Tabelas de frequência e medidas resumo </b> </center>
 </font>
-
-<font size="4"> 
-<p align=”center”> [Lineu Alberto Cavazani de Freitas](https://lineu96.github.io/st/) </center>
-</font> 
 
 ---
 
