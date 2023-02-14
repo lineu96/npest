@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>papel_estatistica.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="papel_estatistica.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Papel da Estatistica no desenvolvimento científico
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="conceitos.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="amostragem.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Introdução a métodos de amostragem
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Probabilidade e variáveis aleatórias</li>
+    <li>
+      <a href="probabilidade.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidade
+      </a>
+    </li>
+    <li>
+      <a href="vas_discretas.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li>
+      <a href="vas_continuas.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="extra.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<style type="text/css">
+table.header {
+    margin-top: 10px;
+    border-collapse: unset;
+}
+table.header > tbody {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+</style>
+
+<table class="header" width="100%" align="center">
+  <tr>
+    <td align="left" valign="bottom" width="90px">
+      <a href="https://lineu96.github.io/npest/">
+        <img src="img/est.jpg" width="100%" />
+      </a>
+    </td>
+    <td align="left" valign="top">
+      <div class="header">
+        <h4 style="font-size: 20px; margin: 10px auto 0 10px">
+          Noções de Probabilidade e Estatística
+        </h4>
+        <h5 style="margin: 0px 0px 10px 10px">
+          <a href="https://lineu96.github.io/st/">
+            <code>Lineu Alberto</code>
+          </a>
+        </h5>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<center>
+<td>
+<img src="img/progress2.png" alt="Drawing" style="width: 350px;"/>
+</td>
+</center>
+<p>Durante o século XX, segundo Salsburg (2009), a Estatística revolucionou a ciência através do fornecimento de modelos úteis que sofisticaram o processo de pesquisa na direção de melhores parâmetros de investigação, permitindo orientar a tomada de decisões nas políticas socioeconômicas. Para Stigler (1986), os métodos estatísticos foram desenvolvidos como uma mistura de ciência, tecnologia e lógica para a solução e investigação de problemas em várias áreas do conhecimento humano.</p>
+<p>A chegada de computadores pessoais cada vez mais poderosos foi decisiva e fez com que a Estatística se tornasse mais acessível aos pesquisadores dos diferentes campos de atuação. Atualmente, os equipamentos e softwares permitem a manipulação de grande quantidade de dados, o que veio a dinamizar o emprego dos métodos estatísticos.</p>
+<p>Com a velocidade da informação, a estatística passou a ser uma ferramenta essencial na produção e disseminação do conhecimento. O grau de importância atribuído à estatística é tão grande que praticamente todos os governos possuem organismos oficiais destinados à realização de estudos estatísticos.</p>
+<p>A estatística é definida como um conjunto de métodos e técnicas que envolve todas as etapas de uma pesquisa, desde o planejamento, coordenação, levantamento de dados por meio de amostragem ou censo, aplicação de questionários, entrevistas e medições com a máxima quantidade de informação possível para um dado custo, a consistência, o processamento, a organização, a análise e interpretação dos dados para explicar fenômenos socioeconômicos, a inferência, o cálculo do nível de confiança e do erro existente na resposta para uma determinada variável e a disseminação das informações</p>
+<p>somente no século XIX que a estatística começou a ganhar importância nas diversas áreas do conhecimento. A partir do século XX começou a ser aplicada nas grandes organizações, quando os japoneses começaram a falar em qualidade total, surgindo a estatística moderna, considerada uma disciplina. A partir daí, a estatística evoluiu de forma significativa, passando a ser utilizada nos diferentes setores da sociedade como forma de obtenção de informações a partir do levantamento de dados com base em métodos de amostragem complexos.</p>
+<p>Os avanços no campo da Tecnologia da Informação, envolvendo todas as atividades e soluções providas por recursos de computação (hardwares e softwares), a partir da metade do século XX e atualmente, tendo como consequências o aumento significativo da capacidade de produzir, armazenar e transmitir informações, associados ao crescimento acentuado da demanda por informações num mundo globalizado, vêm exigindo da estatística avanços paralelos no desenvolvimento de metodologias e novos indicadores cada vez mais complexos e que exigem equipamentos modernos, softwares estatísticos e técnicos capacitados.</p>
+<p>Cabe destacar ainda que a evolução constante e acelerada no poder de processamento dos computadores, aliada ao desenvolvimento de softwares cada vez mais poderosos, causaram um aumento do interesse pelos métodos estatísticos computacionalmente intensivos, como os modelos lineares generalizados, modelos não-lineares (como redes neurais, árvores de decisão, modelos multinível, modelos dinâmicos espaciais), modelos bayesianos, além dos métodos baseados em reamostragem, como testes de permutação e bootstrap.</p>
+<p>A utilidade da estatística se expressa no seu uso, uma vez que grande parte das hipóteses científicas, independentemente da área, precisa passar por um estudo estatístico para ser aceita ou rejeitada, como é o caso do teste de novos medicamentos, dos ajustes de modelos de regressão, sobre a opinião popular de novos produtos etc. Na área médica, por exemplo, nenhum medicamento pode ser disponibilizado para o mercado se não tiver sua eficácia estatisticamente comprovada. O grande volume de informações produzidas pelo mundo moderno (pesquisas por amostragem, censos, internet, mercado financeiro) precisa ser analisado adequadamente. Essas análises utilizam as mais variadas técnicas estatísticas. A rigor, onde houver incerteza esta ciência pode ser empregada. Desse modo, todas as áreas do conhecimento humano a requerem como instrumento de análise de dados (ANDRADE, 2009).</p>
+<p>A estatística pode ser considerada como uma ciência quando, baseando-se em suas teorias, estuda grandes conjuntos de dados, independentemente da natureza destes, sendo autônoma e universal. É considerada um método quando serve de instrumento particular a uma determinada ciência (como na Agronomia, na Biologia, na Física, na Medicina ou na Psicologia). Finalmente, é considerada arte quando é aplicada visando à construção de modelos para representar a realidade (LOPES, 2010).</p>
+<p>Segundo Morettin (1981), o cidadão comum pensa que a estatística se resume a apresentar tabelas e gráficos em colunas esportivas ou econômicas de jornais e revistas ou, ainda, associam-na à previsão de resultados eleitorais. Porém, ressalta que a estatística moderna não é responsável apenas pela criação de tabelas e gráficos, mas trabalha também com metodologias científicas muito mais complexas</p>
+<p>A estatística é a ciência que permite extrair dos dados a informação necessária para que seja possível tomar decisões acertadas com base em um determinado nível de confiança e margem de erro</p>
+<p>A estatística é responsável pelo desenvolvimento científico em geral. Além da sua aplicabilidade nas ciências biológicas, exatas e econômicas, tem sido utilizada como ferramenta indispensável para as ciências humanas e sociais. É assim que as ciências jurídicas, a história, a pedagogia, a psicologia e a sociologia têm se beneficiado de consideráveis desenvolvimentos e do aumento de credibilidade junto à população com a sua utilização. Como se comentou nesta nota, a estatística está presente na vida do homem desde a antiguidade, sendo demonstrada a sua capacidade de auxiliar na análise de dados, nos âmbitos pessoal ou profissional, público ou privado. Para o gestor público, contribui nas tomadas de decisão, permitindo empregar de forma eficiente os recursos arrecadados em benefício da população mais necessitada. Assim, a estatística teve e continuará tendo um grande papel na transformação dos métodos de pesquisa nas diferentes áreas do conhecimento, aumentando o nível de confiança das informações divulgadas pelas pesquisas e favorecendo a tomada de decisões acertadas, em face das incertezas, na implementação e avaliação de políticas socioeconômicas.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

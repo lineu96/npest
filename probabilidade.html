@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>probabilidade.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Noções de Probabilidade e Estatística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="papel_estatistica.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Papel da Estatistica no desenvolvimento científico
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="conceitos.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Conceitos iniciais
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="amostragem.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Introdução a métodos de amostragem
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Análise exploratória de dados</li>
+    <li>
+      <a href="npest2_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest2_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Probabilidade e variáveis aleatórias</li>
+    <li>
+      <a href="probabilidade.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Probabilidade
+      </a>
+    </li>
+    <li>
+      <a href="vas_discretas.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias discretas
+      </a>
+    </li>
+    <li>
+      <a href="vas_continuas.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Variáveis aleatórias contínuas
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Inferência</li>
+    <li>
+      <a href="npest6_1.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 1
+      </a>
+    </li>
+    <li>
+      <a href="npest6_2.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Parte 2
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="extra.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Tópicos interessantes não abordados
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<style type="text/css">
+table.header {
+    margin-top: 10px;
+    border-collapse: unset;
+}
+table.header > tbody {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+</style>
+
+<table class="header" width="100%" align="center">
+  <tr>
+    <td align="left" valign="bottom" width="90px">
+      <a href="https://lineu96.github.io/npest/">
+        <img src="img/est.jpg" width="100%" />
+      </a>
+    </td>
+    <td align="left" valign="top">
+      <div class="header">
+        <h4 style="font-size: 20px; margin: 10px auto 0 10px">
+          Noções de Probabilidade e Estatística
+        </h4>
+        <h5 style="margin: 0px 0px 10px 10px">
+          <a href="https://lineu96.github.io/st/">
+            <code>Lineu Alberto</code>
+          </a>
+        </h5>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<hr />
+<font size="5">
+<p align=”center”>
+<b> Parte 3 - Probabilidades </b>
+</center>
+<p></font></p>
+<hr />
+<div id="probabilidades" class="section level1">
+<h1><span class="header-section-number">1</span> <strong>Probabilidades</strong></h1>
+<p>A teoria das probabilidades é o ramo da matemática que desenvolve e avalia modelos para descrever fenômenos aleatórios. É a base teórica para o desenvolvimento das técnicas estatísticas.</p>
+<p>Consiste em descrever o conjunto de resultados possíveis do fenômeno e atribuir pesos a cada possível resultado, refletindo suas chances de ocorrência, estes pesos são as chamadas probabilidades.</p>
+<hr />
+</div>
+<div id="fenomenos-deterministicos-e-aleatorios" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>Fenômenos determinísticos e aleatórios</strong></h1>
+<p>Os fenômenos podem ser classificados como determinísticos e aleatórios dependendo de como ocorre seu desfecho em diversas tentativas.</p>
+<ul>
+<li><p><strong>Fenômenos determinísticos</strong>: algo que, quando repetido diversas vezes, tem sempre o mesmo desfecho, isto é, o mesmo resultado.</p></li>
+<li><p><strong>Fenômenos aleatórios</strong>: algo que, quando repetido diversas vezes, pode ter diferentes desfechos. É tratado como aleatório pois antes da execução não há como saber qual dos possíveis resultados será observado. Portanto, um fenômeno aleatório é uma situação ou acontecimento cujos resultados não podem ser previstos com certeza.</p></li>
+</ul>
+<hr />
+</div>
+<div id="teoria-dos-conjuntos" class="section level1">
+<h1><span class="header-section-number">3</span> <strong>Teoria dos Conjuntos</strong></h1>
+<p><strong>Eventos</strong> são resultados ou um subconjunto de resultados de um experimento aleatório, usualmente são representados por letras latinas maiúsculas (A, B, C, …). A teoria dos conjuntos é utilizada para definir operações com eventos. Alguns conceitos importantes são:</p>
+<ul>
+<li><strong>Espaço amostral</strong>: conjunto de todos os resultados possíveis de um fenômeno aleatório. Denotado por <span class="math inline">\(\Omega\)</span>. Os subconjuntos de <span class="math inline">\(\Omega\)</span> são os eventos. O espaço amostral pode ser:
+<ul>
+<li><strong>Discreto</strong>: contêm apenas um número finito ou contável de elementos.</li>
+<li><strong>Contínuo</strong>: contêm um número infinito de elementos.</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(\\\)</span></p>
+<ul>
+<li><p><strong>Conjunto vazio</strong>: conjunto sem elementos, denotado por <span class="math inline">\(\phi\)</span>.</p></li>
+<li><p><strong>União</strong>: sejam dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, a união é denotada por <span class="math inline">\(A ∪ B\)</span> e representa a ocorrência de, pelo menos, um dos eventos A ou B.</p></li>
+</ul>
+<center>
+<div>
+<p><img src="img/uniap.png" width="170" height="170"/></p>
+</div>
+</center>
+<ul>
+<li><strong>Interseção</strong>: sejam dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, a interseção é denotada por <span class="math inline">\(A ∩ B\)</span> e representa a ocorrência simultânea de A e B.</li>
+</ul>
+<center>
+<div>
+<p><img src="img/inter.png"width="170" height="170"/></p>
+</div>
+</center>
+<ul>
+<li><strong>Eventos disjuntos ou mutualmente exclusivos</strong>: sejam dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, eles são ditos disjuntos se possuem interseção nula, isto é, não têm elementos em comum. <span class="math inline">\(A ∩ B = \phi\)</span>.</li>
+</ul>
+<center>
+<div>
+<p><img src="img/disj.png"width="170" height="170"/></p>
+</div>
+</center>
+<ul>
+<li><strong>Eventos complementares</strong>: eventos que a união resulta no espaço amostral e a intersecção é vazia. <span class="math inline">\(A ∪ A^{c} = \Omega\)</span> e <span class="math inline">\(A ∩ A^{c} = \phi\)</span>.</li>
+</ul>
+<center>
+<div>
+<p><img src="img/comp.png"width="170" height="170"/></p>
+</div>
+</center>
+<hr />
+</div>
+<div id="definicao-axiomatica-de-probabilidade" class="section level1">
+<h1><span class="header-section-number">4</span> <strong>Definição axiomática de probabilidade</strong></h1>
+<p>Probabilidade é uma função <span class="math inline">\(P(·)\)</span> que atribui valores que mensuram a chance de ocorrência de eventos do espaço amostral, de tal forma que que atenda as condições:</p>
+<ul>
+<li><p><span class="math inline">\(0 \leq P(A) \leq 1, \forall A \in \Omega\)</span></p></li>
+<li><p><span class="math inline">\(P(\Omega) = 1\)</span></p></li>
+<li><p><span class="math inline">\(P \left ( ∪_{j=1}^{n} A_{j} \right ) = \sum_{j=1}^{n} P(A_{j})\)</span>, desde que os <span class="math inline">\(A_{j}\)</span> sejam disjuntos.</p></li>
+</ul>
+<hr />
+<p>Considerando o que foi apresentado até o momento, o problema agora é: como atribuir probabilidades aos elementos do espaço amostral?</p>
+<p>As principais maneiras de atribuir probabilidades são:</p>
+<ul>
+<li><p><strong>A forma clássica</strong>: baseia-se nas características teóricas da realização do fenômeno.</p></li>
+<li><p><strong>A forma frequentista</strong>: baseia-se nas frequências de ocorrência do fenômeno. Para um grande número de repetições, a frequência relativa dos eventos do espaço amostral são estimativas da verdadeira probabilidade. Intuitivamente é possível conjecturar que à medida que o número de repetições aumenta, as frequências relativas se estabilizam em um número que chamaremos de probabilidade.</p></li>
+</ul>
+<hr />
+<p>Considere dois experimentos: o lançamento de um dado e o lançamento de uma moeda. Considerando que sejam honestos, imaginamos que a probabilidade de uma face qualquer do dado aparecer em um lancamento seja 1/6 (considerando que são 6 faces e todas tem a mesma chance de ocorrência já que o dado é equilibrado). O mesmo para a moeda: considerando que são duas faces, a probabilidade de observar qualquer uma delas é igual a 1/2. Estas suposições são resultantes da atribuição de probabilidades pela forma clássica.</p>
+<p>Pela forma frequentista deveríamos repetir o experimento de lançar o dado e a moeda um grande número de vezes já que a Lei dos Grandes Números nos diz que as estimativas das probabilidades dadas pelas frequências relativas tendem a ficar melhores com mais observações.</p>
+<p>Os gráficos a seguir apresentam o resultado da simulação de diversos lançamentos de um dado e uma moeda, note que quanto maior o número de lançamentos mais próxima a probabilidade obtida fica daquela obtida pela forma clássica:</p>
+<p><img src="probabilidade_files/figure-html/unnamed-chunk-1-1.png" width="960" /></p>
+<hr />
+<div id="adicao-de-probabilidades" class="section level2">
+<h2><span class="header-section-number">4.1</span> <strong>Adição de probabilidades</strong></h2>
+<p>A probabilidade da união de eventos é calculada através da regra da adição de probabilidades:</p>
+<p><span class="math display">\[P(A ∪ B) =  P(A) + P(B) − P(A ∩ B)\]</span></p>
+<p>Se A e B forem disjuntos, a expressão se reduz à soma das probabilidades.</p>
+<p>Como consequência da regra da adição, obtemos que, para qualquer evento <span class="math inline">\(A \subset \Omega\)</span>:</p>
+<p><span class="math display">\[P(A) =  1 - P(A^{c})\]</span></p>
+<p>Consequentemente:</p>
+<p><span class="math display">\[P(A ∪ A^{c}) =  P(\Omega) = 1\]</span></p>
+<hr />
+</div>
+<div id="probabilidade-condidional" class="section level2">
+<h2><span class="header-section-number">4.2</span> <strong>Probabilidade condidional</strong></h2>
+<p>Em muitas situações, o fenômeno de interesse pode ser separado em etapas. A informação do que ocorreu em uma etapa pode influenciar nas etapas seguintes. Nestas situações há um ganho de informação e pode-se recalcular as probabilidades. Estas probabilidades são as chamadas probabilidades condicionais. Dados dois eventos A e B, a probabilidade condicional de A ocorrer, dado que ocorreu B é representado por P(A|B).</p>
+<ul>
+<li>Quando <span class="math inline">\(P(B) &gt; 0\)</span>:</li>
+</ul>
+<p><span class="math display">\[P(A|B) = \frac{P(A ∩ B)}{P(B)}\]</span></p>
+<ul>
+<li>Quando <span class="math inline">\(P(B) = 0\)</span>:</li>
+</ul>
+<p><span class="math display">\[P(A|B) = P(A)\]</span></p>
+<hr />
+</div>
+<div id="regra-do-produto" class="section level2">
+<h2><span class="header-section-number">4.3</span> <strong>Regra do produto</strong></h2>
+<p>Da definição de probabilidade condicional, é possível deduzir a regra do prodto:</p>
+<p><span class="math display">\[P({A ∩ B}) = P(A|B)P(B),\]</span> com <span class="math inline">\(P(B)&gt;0\)</span>.</p>
+<hr />
+</div>
+<div id="independencia-de-eventos" class="section level2">
+<h2><span class="header-section-number">4.4</span> <strong>Independência de eventos</strong></h2>
+<p>Dois eventos A e B são independentes se a informação da ocorrência de um não altera a probabilidade de ocorrência do outro:</p>
+<p><span class="math display">\[P(A|B) = P(A), P(B) &gt; 0\]</span> ou, de forma equivalente:</p>
+<p><span class="math display">\[P({A ∩ B}) = P(A)P(B)\]</span></p>
+<hr />
+</div>
+<div id="particao-do-espaco-amostral" class="section level2">
+<h2><span class="header-section-number">4.5</span> <strong>Partição do espaço amostral</strong></h2>
+<p>Os eventos <span class="math inline">\(C_1, C_2, ..., C_k\)</span> formam uma partição do espaço amostral se eles não tem interseção entre si e sua união é igual ao espaço amostral. Isto é:</p>
+<ul>
+<li><p><span class="math inline">\(C_i ∩ C_j = \phi\)</span>, para <span class="math inline">\(i \neq j\)</span></p></li>
+<li><p><span class="math inline">\(∪_{i=1}^{k} C_{i} = \Omega\)</span></p></li>
+</ul>
+<center>
+<img src="img/part2.jpg" width=400 height=400>
+</center>
+<hr />
+</div>
+<div id="teorema-de-bayes" class="section level2">
+<h2><span class="header-section-number">4.6</span> <strong>Teorema de Bayes</strong></h2>
+<p>Suponha que os eventos <span class="math inline">\(C_1, C_2, ..., C_k\)</span> formem uma partição de <span class="math inline">\(\Omega\)</span> e que suas probabilidades sejam conhecidas.Suponha ainda que, para um evento A, se conheçam as probabilidades <span class="math inline">\(P(A|C_i)\)</span> para todo <span class="math inline">\(i = 1,2,...,k\)</span>. Entãom para qualquer <span class="math inline">\(j\)</span> temos que:</p>
+<p><span class="math display">\[P(C_j|A) = \frac{P(A|C_j)P(C_j)}{\sum_{i=1}^{k}P(A|C_i)P(C_i)},\ j=1,2,...,k\]</span></p>
+<hr />
+<p>Críticas e sugestões a este material sempre serão bem vindas.</p>
+<p>Para entrar em contato comigo, envie uma mensagem para <a href="mailto:lineuacf@gmail.com" class="email">lineuacf@gmail.com</a>.</p>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

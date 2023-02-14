@@ -1,0 +1,133 @@
+---
+output:
+  html_document:                    # Classe de documento.
+    toc: true                       # Exibir sum?rio.
+    toc_depth: 2                    # Profundidade do sum?rio.
+    toc_float:                      # Sum?rio flutuante na borda.
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           # Se??es numeradas.
+    theme: flatly
+    #spacelab
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                 # Caminho para arquivo CSS.
+    fig_width: 7                    # Lagura das figuras.
+    fig_height: 6                   # Altura das figuras.
+    fig_caption: true               # Exibica??o de legenda.
+    fig_align: 'center'
+#    code_folding: hide              # Esconder/exibir bloco de c?digo.
+#    keep_md: true                   # Manter o arquivo md.
+    #template: quarterly_report.html # Caminho para o template.  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+---
+
+<center>
+<td> <img src="img/progress2.png" alt="Drawing" style="width: 350px;"/> </td>
+</center>
+
+Durante o século XX, segundo Salsburg (2009), a Estatística revolucionou a ciência
+através do fornecimento de modelos úteis que sofisticaram o processo de pesquisa na direção
+de melhores parâmetros de investigação, permitindo orientar a tomada de decisões nas
+políticas socioeconômicas. Para Stigler (1986), os métodos estatísticos foram desenvolvidos
+como uma mistura de ciência, tecnologia e lógica para a solução e investigação de problemas
+em várias áreas do conhecimento humano.
+
+A chegada de computadores pessoais cada vez mais poderosos foi decisiva e fez
+com que a Estatística se tornasse mais acessível aos pesquisadores dos diferentes campos
+de atuação. Atualmente, os equipamentos e softwares permitem a manipulação de grande
+quantidade de dados, o que veio a dinamizar o emprego dos métodos estatísticos.
+
+Com a velocidade da
+informação, a estatística passou a ser uma ferramenta essencial na produção e disseminação do conhecimento. O grau de importância atribuído à estatística é tão grande que
+praticamente todos os governos possuem organismos oficiais destinados à realização de
+estudos estatísticos.
+
+A estatística é definida como um conjunto de métodos e técnicas que envolve todas
+as etapas de uma pesquisa, desde o planejamento, coordenação, levantamento de dados
+por meio de amostragem ou censo, aplicação de questionários, entrevistas e medições
+com a máxima quantidade de informação possível para um dado custo, a consistência, o
+processamento, a organização, a análise e interpretação dos dados para explicar fenômenos
+socioeconômicos, a inferência, o cálculo do nível de confiança e do erro existente na
+resposta para uma determinada variável e a disseminação das informações
+
+somente no século XIX que a estatística começou a
+ganhar importância nas diversas áreas do conhecimento. A partir do século XX começou a
+ser aplicada nas grandes organizações, quando os japoneses começaram a falar em
+qualidade total, surgindo a estatística moderna, considerada uma disciplina. A partir daí, a
+estatística evoluiu de forma significativa, passando a ser utilizada nos diferentes setores da
+sociedade como forma de obtenção de informações a partir do levantamento de dados com
+base em métodos de amostragem complexos.
+
+Os avanços no campo da Tecnologia da Informação, envolvendo todas as atividades e
+soluções providas por recursos de computação (hardwares e softwares), a partir da metade
+do século XX e atualmente, tendo como consequências o aumento significativo da capacidade
+de produzir, armazenar e transmitir informações, associados ao crescimento acentuado da
+demanda por informações num mundo globalizado, vêm exigindo da estatística avanços
+paralelos no desenvolvimento de metodologias e novos indicadores cada vez mais complexos
+e que exigem equipamentos modernos, softwares estatísticos e técnicos capacitados.
+
+Cabe destacar ainda que a evolução constante e acelerada no poder de processamento
+dos computadores, aliada ao desenvolvimento de softwares cada vez mais poderosos,
+causaram um aumento do interesse pelos métodos estatísticos computacionalmente intensivos,
+como os modelos lineares generalizados, modelos não-lineares (como redes neurais, árvores
+de decisão, modelos multinível, modelos dinâmicos espaciais), modelos bayesianos, além
+dos métodos baseados em reamostragem, como testes de permutação e bootstrap.
+
+A utilidade da estatística se expressa no seu uso, uma vez que grande parte das
+hipóteses científicas, independentemente da área, precisa passar por um estudo estatístico
+para ser aceita ou rejeitada, como é o caso do teste de novos medicamentos, dos ajustes
+de modelos de regressão, sobre a opinião popular de novos produtos etc. Na área médica,
+por exemplo, nenhum medicamento pode ser disponibilizado para o mercado se não tiver
+sua eficácia estatisticamente comprovada. O grande volume de informações produzidas
+pelo mundo moderno (pesquisas por amostragem, censos, internet, mercado financeiro)
+precisa ser analisado adequadamente. Essas análises utilizam as mais variadas técnicas
+estatísticas. A rigor, onde houver incerteza esta ciência pode ser empregada. Desse modo,
+todas as áreas do conhecimento humano a requerem como instrumento de análise de
+dados (ANDRADE, 2009).
+
+A estatística pode ser considerada como uma ciência quando, baseando-se em suas
+teorias, estuda grandes conjuntos de dados, independentemente da natureza destes, sendo
+autônoma e universal. É considerada um método quando serve de instrumento particular a
+uma determinada ciência (como na Agronomia, na Biologia, na Física, na Medicina ou na
+Psicologia). Finalmente, é considerada arte quando é aplicada visando à construção de
+modelos para representar a realidade (LOPES, 2010).
+
+Segundo Morettin (1981), o cidadão comum pensa que a estatística se resume a
+apresentar tabelas e gráficos em colunas esportivas ou econômicas de jornais e revistas ou,
+ainda, associam-na à previsão de resultados eleitorais. Porém, ressalta que a estatística
+moderna não é responsável apenas pela criação de tabelas e gráficos, mas trabalha
+também com metodologias científicas muito mais complexas
+
+A estatística é a ciência que permite
+extrair dos dados a informação necessária para que seja possível tomar decisões acertadas
+com base em um determinado nível de confiança e margem de erro
+
+A estatística é responsável pelo desenvolvimento científico em geral. Além da sua
+aplicabilidade nas ciências biológicas, exatas e econômicas, tem sido utilizada como ferramenta
+indispensável para as ciências humanas e sociais. É assim que as ciências jurídicas, a história,
+a pedagogia, a psicologia e a sociologia têm se beneficiado de consideráveis desenvolvimentos
+e do aumento de credibilidade junto à população com a sua utilização.
+Como se comentou nesta nota, a estatística está presente na vida do homem
+desde a antiguidade, sendo demonstrada a sua capacidade de auxiliar na análise de dados,
+nos âmbitos pessoal ou profissional, público ou privado. Para o gestor público, contribui nas
+tomadas de decisão, permitindo empregar de forma eficiente os recursos arrecadados em
+benefício da população mais necessitada.
+Assim, a estatística teve e continuará tendo um grande papel na transformação dos
+métodos de pesquisa nas diferentes áreas do conhecimento, aumentando o nível de confiança
+das informações divulgadas pelas pesquisas e favorecendo a tomada de decisões acertadas,
+em face das incertezas, na implementação e avaliação de políticas socioeconômicas.
+
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
+

@@ -47,7 +47,7 @@ Entende-se por Estatística o conjunto de métodos e técnicas usados para organ
 ---
 
 # **Ramos da Estatística** {.tabset .tabset-fade}
-Os maiores ramos da Estatística são: **Estatística descritiva** ou **exploratória**, **Probabilidade** e **Inferência**.
+Nos cursos de Estatística básica geralmente são abordadas 3 grandes áreas: **Estatística descritiva** ou **exploratória**, **Probabilidade** e **Inferência**.
 
 ---
 

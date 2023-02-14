@@ -15,14 +15,23 @@ navbar:
     - text: "Material"
       icon: fa-list-ol
       menu:
+
+        - text: "Papel da Estatistica no desenvolvimento científico"
+          icon: fa-arrow-right
+          href: papel_estatistica.html
+        - text: "---------"   
       
         - text: "Conceitos iniciais"
           icon: fa-arrow-right
-          href: npest1.html
+          href: conceitos.html
         - text: "---------"   
         
+        - text: "Introdução a métodos de amostragem"
+          icon: fa-arrow-right
+          href: amostragem.html
+        - text: "---------"   
         
-        - text: "Introdução à análise exploratória de dados"
+        - text: "Análise exploratória de dados"
          
         - text: "Parte 1"
           icon: fa-arrow-right
@@ -32,20 +41,21 @@ navbar:
           icon: fa-arrow-right
           href: npest2_2.html  
         - text: "---------"  
-        
-        - text: "Probabilidades"
+
+
+        - text: "Probabilidade e variáveis aleatórias"
+         
+        - text: "Probabilidade"
           icon: fa-arrow-right
-          href: npest3.html  
-        - text: "---------" 
-        
+          href: probabilidade.html
+          
         - text: "Variáveis aleatórias discretas"
           icon: fa-arrow-right
-          href: npest4.html  
-        - text: "---------" 
-        
+          href: vas_discretas.html  
+
         - text: "Variáveis aleatórias contínuas"
           icon: fa-arrow-right
-          href: npest5.html      
+          href: vas_continuas.html  
         - text: "---------" 
         
         - text: "Inferência"
@@ -61,7 +71,7 @@ navbar:
       
         - text: "Tópicos interessantes não abordados"
           icon: fa-arrow-right
-          href: npest7.html
+          href: extra.html
         - text: "---------"   
   
   right:
